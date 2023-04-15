@@ -7,7 +7,8 @@ CREATE TABLE user (
     pronoms VARCHAR(255),
     Localisation VARCHAR(255),
     mail VARCHAR(255) NOT NULL UNIQUE,
-    photo IMAGE NOT NULL,
+    photo VARCHAR(500) NOT NULL,
+    mot_de_passe VARCHAR(255) NOT NULL,
     PRIMARY KEY(identifiant)
 );
 
@@ -15,7 +16,7 @@ CREATE TABLE abonne (
     id_user VARCHAR(20),
     id_artist VARCHAR(255),
     nom_artiste VARCHAR(255),
-    photo_artiste VARCHAR(255),
+    photo_artiste VARCHAR(500),
     FOREIGN KEY(id_user) REFERENCES user(identifiant)
 );
 
@@ -23,7 +24,7 @@ CREATE TABLE list (
     id_user VARCHAR(20),
     id_album VARCHAR(255),
     nom_album VARCHAR(255),
-    photo VARCHAR(255), -- lien photo album
+    photo VARCHAR(500), -- lien photo album
     FOREIGN KEY(id_user) REFERENCES user(identifiant)
 );
 
@@ -38,7 +39,7 @@ CREATE TABLE review (
     id_user VARCHAR(20),
     id_album VARCHAR(255),
     nom_album VARCHAR(255),
-    photo VARCHAR(255), -- lien photo album
+    photo VARCHAR(500), -- lien photo album
     review_date datetime,
     note Number,
     
