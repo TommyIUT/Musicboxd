@@ -1,0 +1,19 @@
+{
+  "name": "musicboxd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TommyIUT/Musicboxd.git"
+  },
+  "author": "Tom Philippe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TommyIUT/Musicboxd/issues"
+  },
+  "homepage": "https://github.com/TommyIUT/Musicboxd#readme"
+}
