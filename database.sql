@@ -5,7 +5,7 @@ CREATE TABLE userbox (
     pseudo VARCHAR(30) NOT NULL,
     bio VARCHAR(150),
     pronoms VARCHAR(255),
-    Localisation VARCHAR(255),
+    localisation VARCHAR(255),
     mail VARCHAR(255) NOT NULL UNIQUE,
     photo VARCHAR(500) NOT NULL,
     mot_de_passe VARCHAR(255) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE abonne (
     FOREIGN KEY(id_user) REFERENCES userbox(identifiant)
 );
 
-CREATE TABLE list (
+CREATE TABLE listenlist (
     id_user VARCHAR(20),
     id_album VARCHAR(255),
     nom_album VARCHAR(255),
