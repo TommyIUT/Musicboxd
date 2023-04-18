@@ -1,2 +1,11 @@
-const express = require("express")
-const app = express()
+const sequelize = require('./config/sequelize');
+const { QueryTypes } = require('sequelize');
+
+
+sequelize.query('SELECT * FROM userbox', {
+  type: QueryTypes.SELECT
+}).then(results => {
+  console.log(results);
+}).catch(error => {
+  console.log(error);
+});
