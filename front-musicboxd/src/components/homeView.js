@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
-import Card from '../../components/card/card.js'  //pour importer un component
 
-import './homeView.css'
+import '../styles/homeView.css'
 
 export default function HomeView() {
 
@@ -12,7 +11,7 @@ export default function HomeView() {
         const options = {
           method: 'GET',
           headers: {
-            'X-RapidAPI-Key': 'SIGN-UP-FOR-KEY',
+            'X-RapidAPI-Key': '1ca5a7b086824dddb44aaf5d41f70858',
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
           }
         };

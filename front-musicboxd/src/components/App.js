@@ -1,10 +1,9 @@
 import React,{useEffect, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomeView from './view/homeView/homeView.js'
-//import UserView from './view/userView/userView.js'
+import HomeView from './homeView.js'
 
 
-import './App.css';
+import '../styles/App.css';
 
 function App() {
   return (
