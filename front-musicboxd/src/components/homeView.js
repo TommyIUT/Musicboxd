@@ -6,13 +6,13 @@ import '../styles/homeView.css'
 export default function HomeView() {
 
     async function gettruc() {
-        const url = 'https://spotify23.p.rapidapi.com/albums/?ids=3IBcauSj5M2A6lTeffJzdv';
+        const url = 'https://genius-song-lyrics1.p.rapidapi.com/search/';
 
         const options = {
           method: 'GET',
           headers: {
-            'X-RapidAPI-Key': '1ca5a7b086824dddb44aaf5d41f70858',
-            'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+            'X-RapidAPI-Key': 'or8aUaTTxjHilylxjyGABvG_b7FSlypKE01KUgoh56W8bILDuNihl1BfdNm9cF2J',
+            'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
           }
         };
         
