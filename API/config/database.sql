@@ -42,6 +42,7 @@ CREATE TABLE review (
     photo VARCHAR(500), -- lien photo album
     review_date datetime,
     note Number,
+    texte VARCHAR(255),
     
     FOREIGN KEY(id_user) REFERENCES userbox(identifiant)
 );
