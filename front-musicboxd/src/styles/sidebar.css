@@ -12,7 +12,11 @@
     overflow-x: hidden;
 }
 
-
+.enbasla{
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+}
 
 .logo {
     width: 200px; /* limite la largeur maximale de l'image à la largeur de la sidebar */

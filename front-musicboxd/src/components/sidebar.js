@@ -37,9 +37,8 @@ export default function sidebar() {
 
         </Stack>
 
-        // bouton vers utilisateur
         <div className='enbasla'>
-          <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} style={{ color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+          <Button href="/" variant="contained" startIcon={<AccountCircleSharpIcon />} style={{ color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
               Se connecter
           </Button>
         </div>
