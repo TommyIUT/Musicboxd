@@ -9,11 +9,11 @@ export default function HomeView() {
         <Sidebar />
       </div>
       <div className="home">
-        
+        accueil
 
 
 
-        
+
       </div>
       <div className="footer">
         <p className='footer-txt'>
