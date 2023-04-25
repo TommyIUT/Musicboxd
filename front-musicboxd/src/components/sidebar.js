@@ -16,31 +16,31 @@ export default function sidebar() {
 
         <Stack spacing={1} direction="column">
 
-          <a href="/"><img src={logotxt} alt="Musicboxd" className="logo" /></a>
+        <a href="/"><img src={logotxt} alt="Musicboxd" className="logo" /></a>
 
-          <Button href="/" variant="contained" startIcon={<HomeIcon />} style={{ color: '#1ED75A', backgroundColor: 'black',fontFamily: gotham}}>
-            Accueil
-          </Button>
+        <Button href="/" variant="contained" startIcon={<HomeIcon />} >
+          Accueil
+        </Button>
 
-          <Button href="/" variant="contained" startIcon={<SearchIcon />} style={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
-            Chercher
-          </Button>
+        <Button href="/" variant="contained" startIcon={<SearchIcon />} style={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+          Chercher
+        </Button>
 
 
-          <Button href="/" variant="contained" startIcon={<AlbumIcon />} style={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
-            Bibliothèque
-          </Button>
+        <Button href="/" variant="contained" startIcon={<AlbumIcon />} style={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+          Bibliothèque
+        </Button>
 
-          <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} style={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
-            ListenList
-          </Button>
+        <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} style={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+          ListenList
+        </Button>
 
         </Stack>
 
         <div className='enbasla'>
-          <Button href="/connect" variant="contained" startIcon={<AccountCircleSharpIcon />} style={{ color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
-              Se connecter
-          </Button>
+        <Button href="/connect" variant="contained" startIcon={<AccountCircleSharpIcon />} style={{ color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+            Se connecter
+        </Button>
         </div>
        
         
