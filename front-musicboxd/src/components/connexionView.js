@@ -3,9 +3,10 @@ import '../styles/connexionView.css';
 
 export default function HomeView() {
     return (
-      <div className="connexionView">
-        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      </div>
+        <div className='connexionView'>
+            
+        </div>
+    
     );
   }
   

@@ -1,7 +1,15 @@
-.connexionView{
-    background-color: #1a1a1a;
-    margin-top: 0%;
-    margin-left: 0%;
-    margin-right: 0%;
-    margin-bottom: 0;
+@font-face {
+	font-family: 'Gotham';
+	src: url('../font/GothamLight.ttf')
 }
+
+*{
+	padding: 0;
+	margin: top 50%;
+	list-style: none;
+	text-decoration: none;
+	font-family: 'Gotham';
+    background-color: #1a1a1a;
+}
+
+
