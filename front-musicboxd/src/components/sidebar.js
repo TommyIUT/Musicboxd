@@ -38,7 +38,7 @@ export default function sidebar() {
         </Stack>
 
         <div className='enbasla'>
-          <Button href="/" variant="contained" startIcon={<AccountCircleSharpIcon />} style={{ color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+          <Button href="/connect" variant="contained" startIcon={<AccountCircleSharpIcon />} style={{ color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
               Se connecter
           </Button>
         </div>
