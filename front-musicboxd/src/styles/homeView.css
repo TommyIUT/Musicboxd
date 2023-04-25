@@ -42,11 +42,7 @@
 .footer-txt{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60%;
+    margin-top: 60%; /*remplir la page*/
     text-align: center;
     vertical-align: middle
-}
-
-.Linkedin{
-    margin-right: 0%;
 }
