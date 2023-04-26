@@ -13,7 +13,7 @@ function App() {
           <Route path='*' element={<h1>404: page not found </h1>}></Route>
           <Route path='/' exact element={<HomeView/>}></Route>
           <Route path='/user' exact element={<UserView/>}></Route>
-          <Route path='/connect' exact element={<ConnexionView/>}></Route>
+          <Route path='/login' exact element={<ConnexionView/>}></Route>
         </Routes>
       </Router>
     </div>

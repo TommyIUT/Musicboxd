@@ -21,28 +21,44 @@ export default function sidebar() {
 
         <a href="/"><img src={logotxt} alt="Musicboxd" className="logo-sidebar" /></a>
 
-        <Button href="/" variant="contained" startIcon={<HomeIcon />} sx={{ zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+        <Button href="/" variant="contained" startIcon={<HomeIcon />} sx={{
+          '&:hover': {
+            color: 'white',
+            backgroundColor: '#1a1a1a',
+          }, zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           Accueil
         </Button>
 
-        <Button href="/" variant="contained" startIcon={<SearchIcon />} sx={{ zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+        <Button href="/" variant="contained" startIcon={<SearchIcon />} sx={{ '&:hover': {
+            color: 'white',
+            backgroundColor: '#1a1a1a',
+          }, zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           Chercher
         </Button>
 
 
-        <Button href="/" variant="contained" startIcon={<AlbumIcon />} sx={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}} className='test'>
+        <Button href="/" variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
+            color: 'white',
+            backgroundColor: '#1a1a1a',
+          }, color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}} className='test'>
           Bibliothèque
         </Button>
 
-        <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} sx={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+        <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} sx={{ '&:hover': {
+            color: 'white',
+            backgroundColor: '#1a1a1a',
+          }, color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           ListenList
         </Button>
 
         </Stack>
 
         <div className='enbasla'>
-        <Button href="/connect" variant="contained" startIcon={<AccountCircleSharpIcon />} style={{ color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
-            se connecter
+        <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
+            color: 'white',
+            backgroundColor: '#1a1a1a',
+          }, color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+          Se connecter
         </Button>
         </div>
        
