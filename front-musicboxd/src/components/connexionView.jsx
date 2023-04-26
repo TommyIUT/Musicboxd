@@ -24,7 +24,7 @@ export default function connexionView() {
                 </form>
                 <div class="divider"></div>
                 <p className='noaccount'> Vous n'avez pas de compte ?</p>
-                <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
+                <Button href="/register" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
                     color: 'white',
                     backgroundColor: '#1a1a1a',
                 }, color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
