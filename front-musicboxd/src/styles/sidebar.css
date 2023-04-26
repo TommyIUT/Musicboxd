@@ -14,9 +14,10 @@
 }
 
 .enbasla{
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     width: 100%;
+    margin : auto;
 }
 
 .logo-sidebar {
@@ -24,9 +25,4 @@
     padding: 10px;
     background-color: black;
     border-color: black;
-}
-
-.test{
-    color:#ccc;
-    background-color: aqua;
 }

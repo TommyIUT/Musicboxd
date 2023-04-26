@@ -9,7 +9,6 @@
 	list-style: none;
 	text-decoration: none;
 	font-family: 'Gotham';
-    background-color: #121212;
 }
 
 .home{
@@ -18,10 +17,12 @@
     font-family: 'Gotham';
     margin: left 225px;
     margin-bottom: 15px;
+    background-color: #121212;
 }
 
 .homeView{
     font-family: 'Gotham';
+    background-color: #121212;
 }
 
 .footer {

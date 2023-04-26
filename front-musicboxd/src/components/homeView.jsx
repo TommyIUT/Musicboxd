@@ -5,8 +5,9 @@ import '../styles/homeView.css';
 export default function HomeView() {
   return (
     <div className="homeView">
+      <Sidebar></Sidebar>
       <div className="home">
-        <Sidebar></Sidebar>
+        
         accueil
 
       </div>

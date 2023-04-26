@@ -6,9 +6,11 @@ import AlbumIcon from '@mui/icons-material/Album';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import Stack from '@mui/material/Stack';
-import '../styles/sidebar.css';
+
 import gotham from '../font/GothamBold.ttf'
 import logotxt from '../assets/logo_txt.png'
+
+import '../styles/sidebar.css';
 
 export default function sidebar() {
     return (
@@ -19,11 +21,11 @@ export default function sidebar() {
 
         <a href="/"><img src={logotxt} alt="Musicboxd" className="logo-sidebar" /></a>
 
-        <Button href="/" variant="contained" startIcon={<HomeIcon />} >
+        <Button href="/" variant="contained" startIcon={<HomeIcon />} sx={{ zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           Accueil
         </Button>
 
-        <Button href="/" variant="contained" startIcon={<SearchIcon />} sx={{ zIndex: '0', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+        <Button href="/" variant="contained" startIcon={<SearchIcon />} sx={{ zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           Chercher
         </Button>
 
