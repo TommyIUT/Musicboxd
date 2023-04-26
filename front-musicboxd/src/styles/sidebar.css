@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: flex-start;
     overflow-x: hidden;
-    z-index: 2;
+    z-index: 4;
     float:left;
 }
 
@@ -19,9 +19,8 @@
     width: 100%;
 }
 
-.logo {
+.logo-sidebar {
     width: 200px; /* limite la largeur maximale de l'image à la largeur de la sidebar */
-    border-bottom: 1px solid #ccc;
     padding: 10px;
     background-color: black;
     border-color: black;

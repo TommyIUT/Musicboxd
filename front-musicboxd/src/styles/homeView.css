@@ -3,17 +3,24 @@
 	src: url('../font/GothamLight.ttf')
 }
 
+*{
+	padding: 0;
+	margin: top 50%;
+	list-style: none;
+	text-decoration: none;
+	font-family: 'Gotham';
+    background-color: #121212;
+}
+
 .home{
     position: relative;
     color: white;
     font-family: 'Gotham';
     margin: left 225px;
-    background-color: #121212;
     margin-bottom: 15px;
 }
 
 .homeView{
-    background-color: #121212;
     font-family: 'Gotham';
 }
 
@@ -31,7 +38,7 @@
 .footer-txt{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60%; /*remplir la page*/
     text-align: center;
-    vertical-align: middle
+    vertical-align: middle;
+    background-color: #1a1a1a
 }

@@ -9,7 +9,6 @@
 	list-style: none;
 	text-decoration: none;
 	font-family: 'Gotham';
-    background-color: #1a1a1a;
 }
 
 .connexionView{
@@ -17,9 +16,17 @@
     color: white;
     font-family: 'Gotham';
     margin: left 225px;
-    background-color: #121212;
     margin-bottom: 15px;
 
 }
 
+.logo {
+    width: 200px; /* limite la largeur maximale de l'image à la largeur de la sidebar */
+    padding: 10px;
+    background-color: #121212;
+	border-color: #121212;
+}
 
+.ajt{
+	background-color: aqua;
+}

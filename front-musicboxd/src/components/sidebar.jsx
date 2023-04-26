@@ -17,13 +17,13 @@ export default function sidebar() {
 
         <Stack spacing={1} direction="column">
 
-        <a href="/"><img src={logotxt} alt="Musicboxd" className="logo" /></a>
+        <a href="/"><img src={logotxt} alt="Musicboxd" className="logo-sidebar" /></a>
 
         <Button href="/" variant="contained" startIcon={<HomeIcon />} >
           Accueil
         </Button>
 
-        <Button href="/" variant="contained" startIcon={<SearchIcon />} sx={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+        <Button href="/" variant="contained" startIcon={<SearchIcon />} sx={{ zIndex: '0', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           Chercher
         </Button>
 
