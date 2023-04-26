@@ -3,16 +3,6 @@
 	src: url('../font/GothamLight.ttf')
 }
 
-.bar{
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    z-index: 2;
-    float:left;
-    width: 225px;
-}
-
 .home{
     position: relative;
     color: white;

@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AlbumIcon from '@mui/icons-material/Album';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Stack from '@mui/material/Stack';
 import '../styles/sidebar.css';
 import gotham from '../font/GothamBold.ttf'
@@ -12,6 +13,7 @@ import logotxt from '../assets/logo_txt.png'
 
 export default function sidebar() {
     return (
+      
       <div className='bar' >
 
         <Stack spacing={1} direction="column">
@@ -22,18 +24,27 @@ export default function sidebar() {
           Accueil
         </Button>
 
-        <Button href="/" variant="contained" startIcon={<SearchIcon />} style={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+        <Button href="/" variant="contained" startIcon={<SearchIcon />} sx={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           Chercher
         </Button>
 
 
-        <Button href="/" variant="contained" startIcon={<AlbumIcon />} style={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+        <Button href="/" variant="contained" startIcon={<AlbumIcon />} sx={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}} className='test'>
           Bibliothèque
         </Button>
 
-        <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} style={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+        <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} sx={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           ListenList
         </Button>
+
+    <ButtonGroup variant="contained" aria-label="outlined primary button group">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </ButtonGroup>
+
+        <button className='test'>ouioui</button>
+
 
         </Stack>
 
