@@ -4,7 +4,7 @@ const pool = require('../config/db');
 router.get("/", async (req, res) => {
     try {
         const allUsers = await pool.query("select * from userbox;")
-        return res.status(200).json(allAbonnes.rows)
+        return res.status(200).json(allUsers.rows)
     } catch (err) {
         console.log(err.message)
         return res.status(500).send("Erreur serveur")

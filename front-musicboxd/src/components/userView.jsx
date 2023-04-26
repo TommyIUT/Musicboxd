@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './sidebar';
-//import '../styles/homeView.css';
+//import '../styles/userView.css';
 
 export default function userView() {
   return (

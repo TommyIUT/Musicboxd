@@ -7,11 +7,8 @@ import logotxtgris from '../assets/logo_txt_gris.png'
 export default function connexionView() {
     return (
         <div className='connexionView'>
-            <img src={logotxtgris} alt="Musicboxd" className="logo-login" />
-            test
-            <Button variant="contained" startIcon={<HomeIcon />} sx={{ backgroundColor: '#f44336', color: '#fff' }} className='ajt'>
-            Ajouter
-            </Button>
+            <a href='/' className='logo-login'><img src={logotxtgris} alt="Musicboxd" className="logo-login" /></a>
+            
         </div>
     
     );
