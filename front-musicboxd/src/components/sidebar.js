@@ -5,7 +5,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import AlbumIcon from '@mui/icons-material/Album';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import Stack from '@mui/material/Stack';
 import '../styles/sidebar.css';
 import gotham from '../font/GothamBold.ttf'
@@ -36,15 +35,6 @@ export default function sidebar() {
         <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} sx={{ color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           ListenList
         </Button>
-
-    <ButtonGroup variant="contained" aria-label="outlined primary button group">
-      <Button>One</Button>
-      <Button>Two</Button>
-      <Button>Three</Button>
-    </ButtonGroup>
-
-        <button className='test'>ouioui</button>
-
 
         </Stack>
 
