@@ -42,7 +42,7 @@ export default function sidebar() {
 
         <div className='enbasla'>
         <Button href="/connect" variant="contained" startIcon={<AccountCircleSharpIcon />} style={{ color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
-            Se connecter
+            se connecter
         </Button>
         </div>
        

@@ -7,17 +7,15 @@
     background-color: black;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     overflow-x: hidden;
     z-index: 4;
     float:left;
 }
 
 .enbasla{
-    position: fixed;
+    position: absolute;
     bottom: 30px;
-    width: 100%;
-    margin : auto;
 }
 
 .logo-sidebar {
