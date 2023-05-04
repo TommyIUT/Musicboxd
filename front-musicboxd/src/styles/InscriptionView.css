@@ -26,3 +26,9 @@
     font-size: 40px;
     font-family: 'GothamBold';
 }
+
+.lien{
+    color: white;
+    font-family: 'GothamBold';
+    text-decoration: underline;
+}

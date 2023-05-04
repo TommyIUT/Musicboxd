@@ -47,7 +47,8 @@
   }
   
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  input[type="id"] {
 	padding: 10px;
 	border-radius: 5px;
 	border: none;
