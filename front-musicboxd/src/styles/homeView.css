@@ -9,6 +9,10 @@
 	font-family: 'Gotham';
 }
 
+a{
+    color: white;
+}
+
 .home{
     position: relative;
     color: white;
