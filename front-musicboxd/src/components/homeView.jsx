@@ -1,21 +1,42 @@
 import React, { useEffect, useState } from 'react';
+import tpab from '../assets/topimpabutterfly.png'
+import logogris from '../assets/logo_txt_gris.png'
 import Sidebar from './sidebar';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import gotham from '../font/GothamBold.ttf'
+
+
 import '../styles/homeView.css';
 
 export default function HomeView() {
   return (
     <div className="homeView">
       <Sidebar></Sidebar>
-      <div className="home">
-        
-        accueil
+      <Stack spacing={0} direction="column">
 
-      </div>
-      <div className="footer">
-        <p className='footer-txt'>
-          Musicboxd. Cette application a été créée par un <a href='https://www.linkedin.com/in/tom-philippe-214a9a224/' target="_blank" className='footer-txt'>étudiant en informatique</a> en 2023. Données : <a href='http://deezer.com' target="_blank" className='footer-txt'>Deezer</a>.
-        </p>
-      </div>
+        <div className='home'>
+        <Stack spacing={0} direction="column">
+         <img src={tpab} className='tpab'></img>
+         <img src={logogris} className='logoaccueil'></img>
+         <h1 className='txtaccueil'>Notez les albums que vous avez écoutés
+          <br></br> Gardez pour plus tard ceux qui vous intéressent
+         </h1>
+         <Button href="/register" variant="contained" sx={{
+          '&:hover': {
+            color: 'white',
+            backgroundColor: '#1a1a1a',
+          }, color: '#FFFFFF', backgroundColor: '#1ED75A', fontFamily: gotham, marginLeft: '150px'}}>
+          Commencer
+        </Button>
+         </Stack>
+        </div>
+
+        <div className='footer'>
+          <p>Musicboxd. Application créée par un <a target='_blank' href='https://www.linkedin.com/in/tom-philippe-214a9a224/' className='lien'>étudiant français</a>. Données : <a target='_blank' href='https://deezer.com' className='lien'>Deezer </a></p>
+        </div>
+
+      </Stack>
     </div>
   );
 }
