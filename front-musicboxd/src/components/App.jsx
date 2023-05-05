@@ -4,7 +4,7 @@ import HomeView from './homeView.jsx'
 import UserView from './userView.jsx'
 import ConnexionView from './connexionView.jsx'
 import InscriptionView from'./inscriptionView.jsx'
-import SearchView from './searchView.jsx'
+import SearchView from './searchView.jsx';
 
 
 function App() {

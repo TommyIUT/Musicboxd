@@ -10,7 +10,6 @@
 
 .searchView{
     position: fixed;
-    background-color: #1a1a1a;
     font-family: 'GothamLight';
     top: 0;
     right: 0%;
@@ -20,3 +19,12 @@
     overflow-y: scroll;
     overflow: auto;
 }
+
+.recherche{
+    background-color: #1a1a1a;
+}
+
+.resultat{
+    background-color: #121212;
+}
+
