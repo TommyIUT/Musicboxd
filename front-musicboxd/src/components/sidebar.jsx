@@ -29,7 +29,7 @@ export default function sidebar() {
           Accueil
         </Button>
 
-        <Button href="/" variant="contained" startIcon={<SearchIcon />} sx={{ '&:hover': {
+        <Button href="/search" variant="contained" startIcon={<SearchIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
           }, zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
