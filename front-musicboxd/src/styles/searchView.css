@@ -21,10 +21,14 @@
 }
 
 .recherche{
-    background-color: #1a1a1a;
+    background-color: #121212;
+    height: 10vh;
+    width: 100%;
 }
 
 .resultat{
-    background-color: #121212;
+    background-color: #1a1a1a;
+    height: 90vh;
+    width: 100%;
 }
 
