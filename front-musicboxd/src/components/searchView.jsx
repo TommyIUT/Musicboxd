@@ -123,8 +123,8 @@ export default function SearchView() {
           </Search>
 
           <SearchButtons>
-          <SearchButton variant={selectedButton === 'album' ? 'contained' : 'outlined'} onClick={() => handleButtonClick('album')}>album</SearchButton>
-          <SearchButton variant={selectedButton === 'artist' ? 'contained' : 'outlined'} onClick={() => handleButtonClick('artist')}>artiste </SearchButton>
+          <SearchButton variant={selectedButton === 'album' ?  'outlined' : 'contained'} onClick={() => handleButtonClick('album')}>album</SearchButton>
+          <SearchButton variant={selectedButton === 'artist' ? 'outlined' : 'contained' } onClick={() => handleButtonClick('artist')}>artiste </SearchButton>
           </SearchButtons>
           </Stack>
         </div>
