@@ -1,4 +1,4 @@
-import React, {  useState, useRef } from 'react';
+import React, {  useEffect,useState, useRef } from 'react';
 import Sidebar from './sidebar';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -54,13 +54,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchView() {
 
-  const handleSearch = async () => {
-    const url = `https://api.deezer.com/search/${selectedButton}?q=${searchValue}`;
-    const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
-    const data = await response.json();
-    console.log(data.contents);
-  };
-
   const [searchValue,setSearchValue] = useState('');
   const inputRef = useRef(null);
 
@@ -74,6 +67,9 @@ export default function SearchView() {
 
   const handleButtonClick = (value) => {
     setSelectedButton(value);
+    if (searchValue !==''){
+      handleSearch();
+    }
   };
 
   const SearchButtons = styled('div')(({ theme }) => ({
@@ -95,6 +91,18 @@ export default function SearchView() {
     },
   }));
 
+  const [results, setResults] = useState([]);
+
+  const handleSearch = async () => {
+    //console.log(selectedButton);
+    //console.log(searchValue);
+    const url = `https://api.deezer.com/search/${selectedButton}?q=${searchValue}`;
+    const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+    const data = await response.json();
+    setResults(data.contents); // stocke les résultats dans le state results
+    //console.log(results);
+  }
+
   return (
     <div className="searchView">
       <Sidebar></Sidebar>
@@ -109,8 +117,8 @@ export default function SearchView() {
               placeholder="Chercher…"
               inputRef={inputRef}
               inputProps={{ 'aria-label': 'search' }}
-              value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
+              value={searchValue}
               onKeyDown={(e) => {
                 if (e.target.value !== '') {
                   handleSearch();
@@ -123,14 +131,13 @@ export default function SearchView() {
           </Search>
 
           <SearchButtons>
-          <SearchButton variant={selectedButton === 'album' ?  'outlined' : 'contained'} onClick={() => handleButtonClick('album')}>album</SearchButton>
-          <SearchButton variant={selectedButton === 'artist' ? 'outlined' : 'contained' } onClick={() => handleButtonClick('artist')}>artiste </SearchButton>
+          <SearchButton variant={selectedButton === 'album' ?  'contained' : 'outlined'} onClick={() => handleButtonClick('album')}>album</SearchButton>
+          <SearchButton variant={selectedButton === 'artist' ? 'contained' : 'outlined' } onClick={() => handleButtonClick('artist')}>artiste </SearchButton>
           </SearchButtons>
           </Stack>
         </div>
 
-        <div className='resultat'>
-
+        <div className="resultat">
         </div>
         
       </Stack>
