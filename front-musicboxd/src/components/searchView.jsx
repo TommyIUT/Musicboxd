@@ -127,36 +127,41 @@ function genereralbums(results) {
 		const albumElement = document.createElement("album");
 		albumElement.dataset.id = albums['data'][i].id;
 		// Création des balises 
+    const lienElement = document.createElement("a");
+    lienElement.href = "/album/" + albums['data'][i].id;
 		const imageElement = document.createElement("img");
 		imageElement.src = albums['data'][i].cover_medium;
 
 		// On rattache la balise article a la section Fiches
 		sectionAlbums.appendChild(albumElement);
-		albumElement.appendChild(imageElement);
+		albumElement.appendChild(lienElement);
+    lienElement.appendChild(imageElement);
 	}
 
 }
 
 function genererartists(results) {
   const artists = JSON.parse(results);
-	for (let i = 0; i < artists['data'].length; i++) {
+  for (let i = 0; i < artists['data'].length; i++) {
 
-		const sectionArtists = document.querySelector(".resultat");
-		// Création d’une balise dédiée à un album
-		const artistElement = document.createElement("artist");
-		artistElement.dataset.id = artists['data'][i].id;
-		// Création des balises 
+    const sectionArtists = document.querySelector(".resultat");
+    // Création d’une balise dédiée à un album
+    const artistElement = document.createElement("artist");
+    artistElement.dataset.id = artists['data'][i].id;
+    // Création des balises 
     const lienElement = document.createElement("a");
-		const imageElement = document.createElement("img");
-		imageElement.src = artists['data'][i].picture_medium;
-		const nomElement = document.createElement("h2");
-		nomElement.innerText = artists['data'][i].name;
+    lienElement.href = "/artist/" + artists['data'][i].id;
+    const imageElement = document.createElement("img");
+    imageElement.src = artists['data'][i].picture_medium;
+    const nomElement = document.createElement("h2");
+    nomElement.innerText = artists['data'][i].name;
 
-		// On rattache la balise article a la section Fiches
-		sectionArtists.appendChild(artistElement);
-		artistElement.appendChild(imageElement);
-		artistElement.appendChild(nomElement);
-	}
+    // On rattache la balise article a la section Fiches
+    sectionArtists.appendChild(artistElement);
+    artistElement.appendChild(lienElement); // ajouter le lien comme enfant de la balise artiste
+    lienElement.appendChild(imageElement); // ajouter l'image comme enfant de la balise lien
+    artistElement.appendChild(nomElement);
+  }
 }
 
 
@@ -174,12 +179,11 @@ function genererartists(results) {
               placeholder="Chercher…"
               inputRef={inputRef}
               inputProps={{ 'aria-label': 'search' }}
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={(e) =>{ setSearchValue(e.target.value);
+              }}
               value={searchValue}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') {
                   handleSearch(e.target.value);
-              }
               }}
             />
              <IconButton onClick={handleClearSearch} sx={{ color:"#FFFFFF"}}>
