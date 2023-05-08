@@ -93,13 +93,10 @@ export default function SearchView() {
   const [results, setResults] = useState([]);
 
   const handleSearch = async (search) => {
-    console.log(selectedButton);
-    console.log(search);
     const url = `https://api.deezer.com/search/${selectedButton}?q=${search}`;
     const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
     const data = await response.json();
     setResults(data.contents); // stocke les résultats dans le state results
-    console.log(results);
    
     const section = document.querySelector(".resultat");
     section.innerHTML = "";
@@ -117,38 +114,43 @@ export default function SearchView() {
   
 
 function genereralbums(results) {
-	for (let i = 0; i < 9; i++) {
 
-		//const album = results[i];
+  const albums = JSON.parse(results);
+  console.log(albums['data']);
+
+	for (let i = 0; i < albums['data'].length; i++) {
+
+		
 		// Récupération de l'élément du DOM qui accueillera les fiches
 		const sectionAlbums = document.querySelector(".resultat");
 		// Création d’une balise dédiée à un album
 		const albumElement = document.createElement("album");
-		albumElement.dataset.id = i;
+		albumElement.dataset.id = albums['data'][i].id;
 		// Création des balises 
 		const imageElement = document.createElement("img");
-		imageElement.src = 'https://e-cdns-images.dzcdn.net/images/cover/a175af9b7d329bc678cb4d26fc13d6de/250x250-000000-80-0-0.jpg';
+		imageElement.src = albums['data'][i].cover_medium;
 
 		// On rattache la balise article a la section Fiches
 		sectionAlbums.appendChild(albumElement);
 		albumElement.appendChild(imageElement);
 	}
+
 }
 
 function genererartists(results) {
-	for (let i = 0; i < 10; i++) {
+  const artists = JSON.parse(results);
+	for (let i = 0; i < artists['data'].length; i++) {
 
-		//const artist = results[i];
-		// Récupération de l'élément du DOM qui accueillera les fiches
 		const sectionArtists = document.querySelector(".resultat");
 		// Création d’une balise dédiée à un album
 		const artistElement = document.createElement("artist");
-		artistElement.dataset.id = i;
+		artistElement.dataset.id = artists['data'][i].id;
 		// Création des balises 
+    const lienElement = document.createElement("a");
 		const imageElement = document.createElement("img");
-		imageElement.src = 'https://e-cdns-images.dzcdn.net/images/artist/ebb583c45b7fbfece119196ea0db7811/250x250-000000-80-0-0.jpg';
+		imageElement.src = artists['data'][i].picture_medium;
 		const nomElement = document.createElement("h2");
-		nomElement.innerText = 'MF DOOM';
+		nomElement.innerText = artists['data'][i].name;
 
 		// On rattache la balise article a la section Fiches
 		sectionArtists.appendChild(artistElement);
@@ -176,7 +178,6 @@ function genererartists(results) {
               value={searchValue}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  console.log(e.target.value);
                   handleSearch(e.target.value);
               }
               }}

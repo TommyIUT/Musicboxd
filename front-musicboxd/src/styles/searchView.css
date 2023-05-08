@@ -53,7 +53,8 @@
 .resultat artist h2{
     font-family: 'GothamLight';
     align-self: center;
-    margin-top: auto;
+    margin-top: 7px;
+    font-size: 100%;
 }
 
 .resultat artist img{
