@@ -1,4 +1,4 @@
-import React, {  useEffect,useState, useRef } from 'react';
+import React, {  useState, useRef } from 'react';
 import Sidebar from './sidebar';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
