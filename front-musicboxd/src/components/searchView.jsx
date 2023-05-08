@@ -68,9 +68,7 @@ export default function SearchView() {
 
   const handleButtonClick = (value) => {
     setSelectedButton(value);
-    if (searchValue !==''){
-      handleSearch();
-    }
+    handleSearch('');
   };
 
   const SearchButtons = styled('div')(({ theme }) => ({
@@ -139,7 +137,6 @@ function genereralbums(results) {
 
 function genererartists(results) {
 	for (let i = 0; i < 10; i++) {
-    console.log(i);
 
 		//const artist = results[i];
 		// Récupération de l'élément du DOM qui accueillera les fiches
