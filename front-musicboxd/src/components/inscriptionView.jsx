@@ -5,6 +5,8 @@ import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import gotham from '../font/GothamBold.ttf'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+require("dotenv").config();
+
 
 
 
@@ -36,7 +38,8 @@ export default function InscriptionView() {
         
           // test id unique
         console.log(identifiant);
-        const url1 = `api/userbox/id/${identifiant}`;
+        console.log(process.env);
+        const url1 = process.env.URL+`/userbox/id/${identifiant}`;
         const response1 = await fetch(url1, {
             method: "GET"
         });
