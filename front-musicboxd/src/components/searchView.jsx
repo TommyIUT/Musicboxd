@@ -93,6 +93,7 @@ export default function SearchView() {
   const [results, setResults] = useState([]);
 
   const handleSearch = async (search) => {
+    try{
     const url = `https://api.deezer.com/search/${selectedButton}?q=${search}`;
     const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
     const data = await response.json();
@@ -101,13 +102,16 @@ export default function SearchView() {
     const section = document.querySelector(".resultat");
     section.innerHTML = "";
 
-    if (results !== null && search !== ''){
+    if (results !== null && search !== '' && results[2] !== 'e'){
       if (selectedButton === 'album'){
         genereralbums(results);
       }else{
         genererartists(results);
       }
     }
+  }catch{
+
+  }
     
 
     }
@@ -116,7 +120,6 @@ export default function SearchView() {
 function genereralbums(results) {
 
   const albums = JSON.parse(results);
-  console.log(albums['data']);
 
 	for (let i = 0; i < albums['data'].length; i++) {
 
@@ -142,6 +145,7 @@ function genereralbums(results) {
 
 function genererartists(results) {
   const artists = JSON.parse(results);
+  console.log(artists);
   for (let i = 0; i < artists['data'].length; i++) {
 
     const sectionArtists = document.querySelector(".resultat");
