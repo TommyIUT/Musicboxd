@@ -36,9 +36,8 @@ export default function InscriptionView() {
           };
         
           // test id unique
-        console.log(identifiant);
-        console.log(process.env);
-        const url1 = process.env.URL+`/userbox/id/${identifiant}`;
+        const url1 = `http://localhost:5000/userbox/id/${identifiant}`;
+        console.log(url1);
         const response1 = await fetch(url1, {
             method: "GET"
         });
@@ -57,15 +56,14 @@ export default function InscriptionView() {
             method: "GET"
         });
         const data2 = await response2.json();
+        console.log(data2);
 
         if (data2.length>0){
          toast.error('Ce mail est déjà utilisé');
         }
-        console.log(data2);
-      
           try {
             
-              if (data1.length>0 && data2.length>0){
+              if (data1.length===0 && data2.length===0){
                 const response = await fetch("http://localhost:5000/userbox", {
                     method: "POST",
                     headers: {
