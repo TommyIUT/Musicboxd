@@ -19,58 +19,74 @@ export default function InscriptionView() {
         const email = document.getElementById("email").value;
         const identifiant = document.getElementById("id").value;
         const password = document.getElementById("password").value;
-        const password2 = document.getElementById('password2').value;
+        const password2 = document.getElementById("password2").value;
         const hashedPassword = await bcrypt.hash(password, 10);
+      
+        if (password === password2) {
+          const formData = {
+            identifiant: identifiant,
+            pseudo: identifiant,
+            bio: "Music addict",
+            pronoms: "",
+            localisation: "",
+            mail: email,
+            photo: "url de ma photo",
+            mot_de_passe: hashedPassword,
+          };
         
-        if (password === password2){
-                const formData = {
-                    identifiant: identifiant,
-                    pseudo: identifiant,
-                    bio: "Music addict",
-                    pronoms: "",
-                    localisation: "",
-                    mail: email,
-                    photo: "url de ma photo",
-                    mot_de_passe: hashedPassword
-                  };
+          // test id unique
+        console.log(identifiant);
+        const url1 = `api/userbox/id/${identifiant}`;
+        const response1 = await fetch(url1, {
+            method: "GET"
+        });
+        console.log(response1);
+        const data1 = await response1.json();
+        console.log(data1);
+        if (data1.length > 0){
+        toast.error('Cet identifiant existe déja');
+        }
 
-                  
-                fetch("http://localhost:5000/userbox", {
+
+        // test mail unique
+        const url2 = `http://localhost:5000/userbox/mail/${email}`;
+        console.log(url2);
+        const response2 = await fetch(url2, {
+            method: "GET"
+        });
+        const data2 = await response2.json();
+
+        if (data2.length>0){
+         toast.error('Ce mail est déjà utilisé');
+        }
+        console.log(data2);
+      
+          try {
+            
+              if (data1.length>0 && data2.length>0){
+                const response = await fetch("http://localhost:5000/userbox", {
                     method: "POST",
                     headers: {
-                    "Content-Type": "application/json"
+                      "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(formData)
-                })
-                    .then(response => {
-                    if (response.ok) {
-                        toast.success('Compte créé avec succès !');
-                    } else {
-                        // There was an error, handle error scenario
-                        
-                    }
-                    })
-
-                    .then(data => {
-                    console.log(data);
-                    // traitement des données renvoyées
-                    })
-                    .catch(error => {
-                    console.error(error);
-                    console.log("oui error")
-                    const response = fetch(`http://localhost:5000/userbox/id/${identifiant}`,{method: "GET"});
-                    console.log(response);
-                    const data = response.json();
-                    console.log(data);
-                    response = fetch(`/api/routes/userbox/mail/${identifiant}`,{method: "GET"});
-                    data = response.json();
-                    console.log(data);
-                    });
-        } else{
-            toast.error('Les mots de passe ne correspondent pas');
+                    body: JSON.stringify(formData),
+                  });
+            
+                  if (response.ok) {
+                    toast.success("Compte créé avec succès !");
+                  } else {
+                    toast.error("Erreur lors de la création du compte !");
+                  }
+              }
+             
+          } catch (err) {
+            toast.error("Erreur lors de la création du compte !");
+          }
+        } else {
+          toast.error("Les mots de passe ne correspondent pas");
         }
-        
-    };
+      };
+      
     
     return (
         <div className='InscriptionView'>
@@ -78,19 +94,19 @@ export default function InscriptionView() {
             <p className='rejoindre'> Rejoindre <a href='/' className='lien'>Musicboxd</a></p>
 
             <form >
-                <div class="input-login">
+                <div className="input-login">
                     <label for="email">E-mail :</label>
                     <input type="email" id="email" name="email" required></input>
                 </div>
-                <div class="input-login">
+                <div className="input-login">
                     <label for="identifiant">Identifiant :</label>
                     <input type="id" id="id" name="id" required></input>
                 </div>
-                <div class="input-login">
+                <div className="input-login">
                     <label for="password">Mot de passe :</label>
                     <input type="password" id="password" name="password" required></input>
                 </div>
-                <div class="input-login">
+                <div className="input-login">
                     <label for="password">Confirmez le mot de passe :</label>
                     <input type="password" id="password2" name="password" required></input>
                 </div>
@@ -109,5 +125,5 @@ export default function InscriptionView() {
         </div>
     
     );
-  }
+            }
   

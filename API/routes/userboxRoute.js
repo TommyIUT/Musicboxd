@@ -13,12 +13,11 @@ router.get("/", async (req, res) => {
 
 router.get("/id/:id", async (req, res ) => {
   try {
-    const {id} = req.params
-    const user = await pool.query('SELECT * FROM userbox where identifiant = $1;', [id])
-    return res.status(200).json(user.rows[0])
+    const {id} = req.params;
+    const user = await pool.query('SELECT * FROM userbox where identifiant = $1;', [id]);
+    res.json(user.rows);
   } catch (err) {
-    console.log(err.message)
-    return res.status(500).send("Erreur serveur")
+    console.log(err.message);
   }
 })
 
