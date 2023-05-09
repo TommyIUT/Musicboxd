@@ -25,7 +25,7 @@ router.get("/id/:id", async (req, res ) => {
 router.get("/mail/:mail", async (req, res ) => {
   try {
     const {mail} = req.params
-    const user = await pool.query('SELECT * FROM userbox where mail = $1;', [id])
+    const user = await pool.query('SELECT * FROM userbox where mail = $1;', [mail])
     return res.status(200).json(user.rows[0])
   } catch (err) {
     console.log(err.message)

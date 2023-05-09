@@ -16,7 +16,6 @@ export default function InscriptionView() {
 
     const handleButtonClick = async (e) => {
         e.preventDefault();
-        console.log("oui");
         const email = document.getElementById("email").value;
         const identifiant = document.getElementById("id").value;
         const password = document.getElementById("password").value;
@@ -48,13 +47,7 @@ export default function InscriptionView() {
                         toast.success('Compte créé avec succès !');
                     } else {
                         // There was an error, handle error scenario
-                        const response = fetch(`http://localhost:5000/userbox/id/${identifiant}`,{method: "GET"});
-                        console.log(response);
-                        const data = response.json();
-                        console.log(data);
-                        response = fetch(`/api/routes/user/id/${identifiant}`,{method: "GET"});
-                        data = response.json();
-                        console.log(data);
+                        
                     }
                     })
 
@@ -64,7 +57,14 @@ export default function InscriptionView() {
                     })
                     .catch(error => {
                     console.error(error);
-                    // gestion des erreurs
+                    console.log("oui error")
+                    const response = fetch(`http://localhost:5000/userbox/id/${identifiant}`,{method: "GET"});
+                    console.log(response);
+                    const data = response.json();
+                    console.log(data);
+                    response = fetch(`/api/routes/userbox/mail/${identifiant}`,{method: "GET"});
+                    data = response.json();
+                    console.log(data);
                     });
         } else{
             toast.error('Les mots de passe ne correspondent pas');
