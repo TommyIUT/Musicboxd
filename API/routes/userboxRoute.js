@@ -11,10 +11,21 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.get("/:id", async (req, res ) => {
+router.get("/id/:id", async (req, res ) => {
   try {
     const {id} = req.params
     const user = await pool.query('SELECT * FROM userbox where identifiant = $1;', [id])
+    return res.status(200).json(user.rows[0])
+  } catch (err) {
+    console.log(err.message)
+    return res.status(500).send("Erreur serveur")
+  }
+})
+
+router.get("/mail/:mail", async (req, res ) => {
+  try {
+    const {mail} = req.params
+    const user = await pool.query('SELECT * FROM userbox where mail = $1;', [id])
     return res.status(200).json(user.rows[0])
   } catch (err) {
     console.log(err.message)
@@ -50,5 +61,7 @@ router.post("/", async (req, res) => {
       res.status(500).json({ error: "Erreur serveur" });
     }
   });
+
+  
 
 module.exports = router

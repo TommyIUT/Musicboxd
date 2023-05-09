@@ -32,3 +32,19 @@
     font-family: 'GothamBold';
     text-decoration: underline;
 }
+
+/* CSS pour personnaliser le style des toasts */
+.Toastify__toast {
+    background-color: #000000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'GothamLight';
+  }
+  .Toastify__toast--success {
+    background-color: #1ED75A;
+  }
+  .Toastify__toast--error {
+    background-color: #FF4444;
+  }
+  
