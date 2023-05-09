@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import gotham from '../font/GothamBold.ttf'
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -24,27 +24,50 @@ export default function InscriptionView() {
         const hashedPassword = await bcrypt.hash(password, 10);
         
         if (password === password2){
-            try {
-                const response = await fetch('/api/user', {
-                  method: 'POST',
-                  headers: {'Content-Type': 'application/json'},
-                  body: JSON.stringify({
-                    email: email,
+                const formData = {
                     identifiant: identifiant,
-                    password: hashedPassword
-                  })
-                });
-                if (response.ok) {
-                  // User created successfully, handle success scenario
-                } else {
-                  // There was an error, handle error scenario
-                }
-              } catch (err) {
-                console.log(err);
-                // Handle error scenario
-              }
+                    pseudo: identifiant,
+                    bio: "Music addict",
+                    pronoms: "",
+                    localisation: "",
+                    mail: email,
+                    photo: "url de ma photo",
+                    mot_de_passe: hashedPassword
+                  };
+
+                  
+                fetch("http://localhost:5000/userbox", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                })
+                    .then(response => {
+                    if (response.ok) {
+                        toast.success('Compte créé avec succès !');
+                    } else {
+                        // There was an error, handle error scenario
+                        const response = fetch(`http://localhost:5000/userbox/id/${identifiant}`,{method: "GET"});
+                        console.log(response);
+                        const data = response.json();
+                        console.log(data);
+                        response = fetch(`/api/routes/user/id/${identifiant}`,{method: "GET"});
+                        data = response.json();
+                        console.log(data);
+                    }
+                    })
+
+                    .then(data => {
+                    console.log(data);
+                    // traitement des données renvoyées
+                    })
+                    .catch(error => {
+                    console.error(error);
+                    // gestion des erreurs
+                    });
         } else{
-            toast.error('Les deux mots de passe ne correspondent pas');
+            toast.error('Les mots de passe ne correspondent pas');
         }
         
     };
@@ -73,8 +96,9 @@ export default function InscriptionView() {
                 </div>
                 <button type="submit" className='login-button' onClick={handleButtonClick}>S'INSCRIRE</button>
             </form>
+            <ToastContainer />
 
-            <div class="divider"></div>
+            <div className="divider"></div>
 
             <p className='noaccount'> Vous avez déjà un compte ?</p>
             <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
