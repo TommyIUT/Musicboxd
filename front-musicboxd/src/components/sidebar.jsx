@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import {Link} from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import AlbumIcon from '@mui/icons-material/Album';
@@ -19,7 +20,7 @@ export default function sidebar() {
 
         <Stack spacing={1} direction="column">
 
-        <a href="/"><img src={logotxt} alt="Musicboxd" className="logo-sidebar" /></a>
+        <Link to="/"><img src={logotxt} alt="Musicboxd" className="logo-sidebar" /></Link>
 
         <Button href="/" variant="contained" startIcon={<HomeIcon />} sx={{
           '&:hover': {
@@ -29,12 +30,13 @@ export default function sidebar() {
           Accueil
         </Button>
 
+        <Link to="/search">
         <Button href="/search" variant="contained" startIcon={<SearchIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
-          }, zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+          }, width: '100%', zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           Chercher
-        </Button>
+        </Button></Link>
 
 
         <Button href="/" variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {

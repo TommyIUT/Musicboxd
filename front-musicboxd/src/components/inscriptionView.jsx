@@ -77,6 +77,9 @@ export default function InscriptionView() {
                   } else {
                     toast.error("Erreur lors de la création du compte !");
                   }
+
+                  // crée le token de connexion
+                  
               }
              
           } catch (err) {

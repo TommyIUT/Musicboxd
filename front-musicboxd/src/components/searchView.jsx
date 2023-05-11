@@ -119,6 +119,8 @@ export default function SearchView() {
 
 function genereralbums(results) {
 
+  console.log("recherche...");
+
   const albums = JSON.parse(results);
 
 	for (let i = 0; i < albums['data'].length; i++) {
@@ -183,12 +185,11 @@ function genererartists(results) {
               placeholder="Chercher…"
               inputRef={inputRef}
               inputProps={{ 'aria-label': 'search' }}
-              onChange={(e) =>{ setSearchValue(e.target.value);
-              }}
               value={searchValue}
-              onKeyDown={(e) => {
-                  handleSearch(e.target.value);
+              onChange={(e) =>{ setSearchValue(e.target.value);
+                handleSearch(e.target.value);
               }}
+              
             />
              <IconButton onClick={handleClearSearch} sx={{ color:"#FFFFFF"}}>
               <ClearIcon />
