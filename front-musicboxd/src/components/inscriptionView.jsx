@@ -32,6 +32,7 @@ export default function InscriptionView({user, setUser, isConnected, setIsConnec
             mail: email,
             photo: "url de ma photo",
             mot_de_passe: hashedPassword,
+            is_admin: 0,
           };
         
           // test id unique

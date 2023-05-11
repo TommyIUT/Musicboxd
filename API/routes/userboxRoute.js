@@ -34,10 +34,10 @@ router.get("/mail/:mail", async (req, res ) => {
 
 router.post("/", async (req, res) => {
     try {
-      const { identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe } = req.body;
+      const { identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe, is_admin } = req.body;
       const newUser = await pool.query(
-        "INSERT INTO userbox (identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ;",
-        [identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe]
+        "INSERT INTO userbox (identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe,is_admin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) ;",
+        [identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe, is_admin]
       );
       res.status(201).json(newUser.rows[0]);
     } catch (err) {
