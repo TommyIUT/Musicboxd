@@ -9,6 +9,7 @@ CREATE TABLE userbox (
     mail VARCHAR(255) NOT NULL UNIQUE,
     photo VARCHAR(500) NOT NULL,
     mot_de_passe VARCHAR(255) NOT NULL,
+    is_admin boolean,
     PRIMARY KEY(identifiant)
 );
 
