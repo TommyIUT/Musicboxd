@@ -9,7 +9,7 @@ import gotham from '../font/GothamBold.ttf'
 
 import '../styles/homeView.css';
 
-export default function HomeView() {
+export default function HomeView({user, setUser, isConnected, setIsConnected}) {
   return (
     <div className="homeView">
       <Sidebar></Sidebar>

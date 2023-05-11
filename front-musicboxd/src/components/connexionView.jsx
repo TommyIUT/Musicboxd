@@ -7,7 +7,7 @@ import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import gotham from '../font/GothamBold.ttf'
 import {Link} from 'react-router-dom';
 
-export default function connexionView() {
+export default function connexionView({user, setUser, isConnected, setIsConnected}) {
     return (
         <div className='connexionView'>
             <Stack spacing={1} direction="column">

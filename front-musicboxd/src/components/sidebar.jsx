@@ -13,7 +13,9 @@ import logotxt from '../assets/logo_txt.png'
 
 import '../styles/sidebar.css';
 
-export default function sidebar() {
+
+
+export default function sidebar({user, setUser, isConnected, setIsConnected}) {
     return (
       
       <div className='bar' >

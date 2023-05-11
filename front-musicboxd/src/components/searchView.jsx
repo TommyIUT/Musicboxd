@@ -52,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-export default function SearchView() {
+export default function SearchView({user, setUser, isConnected, setIsConnected}) {
 
   const [searchValue,setSearchValue] = useState('');
   const inputRef = useRef(null);

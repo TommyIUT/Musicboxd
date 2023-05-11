@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom';
 import '../styles/InscriptionView.css';
 
 
-export default function InscriptionView() {
+export default function InscriptionView({user, setUser, isConnected, setIsConnected}) {
     const bcrypt = require('bcryptjs');
 
     const handleButtonClick = async (e) => {
@@ -44,7 +44,7 @@ export default function InscriptionView() {
         const data1 = await response1.json();
         console.log(data1);
         if (data1.length > 0){
-        toast.error('Cet identifiant existe déjà');
+          toast.error('Cet identifiant existe déjà');
         }
 
 
@@ -78,6 +78,7 @@ export default function InscriptionView() {
                   }
 
                   // crée le token de connexion
+
 
               }
              

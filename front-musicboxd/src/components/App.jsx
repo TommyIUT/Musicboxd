@@ -5,19 +5,24 @@ import UserView from './userView.jsx'
 import ConnexionView from './connexionView.jsx'
 import InscriptionView from'./inscriptionView.jsx'
 import SearchView from './searchView.jsx';
+import {useState} from "react";
 
 
 function App() {
+
+  const [user, setUser] = useState({})
+  const [isConnected, setIsConnected] = useState(false)
+
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route path='*' element={<h1>404: page not found </h1>}></Route>
-          <Route path='/' exact element={<HomeView/>}></Route>
-          <Route path='/user' exact element={<UserView/>}></Route>
-          <Route path='/login' exact element={<ConnexionView/>}></Route>
-          <Route path='/register' exact element={<InscriptionView/>}></Route>
-          <Route path='/search' exact element={<SearchView/>}></Route>
+          <Route path='/' exact element={<HomeView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
+          <Route path='/user' exact element={<UserView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
+          <Route path='/login' exact element={<ConnexionView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
+          <Route path='/register' exact element={<InscriptionView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
+          <Route path='/search' exact element={<SearchView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
         </Routes>
       </Router>
     </div>
