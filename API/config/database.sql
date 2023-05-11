@@ -31,7 +31,7 @@ CREATE TABLE listenlist (
 
 CREATE TABLE activite (
     id_user VARCHAR(20),
-    activite_date DATETIME,
+    activite_date timestamp,
     contenu VARCHAR(255),
     FOREIGN KEY(id_user) REFERENCES userbox(identifiant)
 );
@@ -41,7 +41,7 @@ CREATE TABLE review (
     id_album VARCHAR(255),
     nom_album VARCHAR(255),
     photo VARCHAR(500), -- lien photo album
-    review_date datetime,
+    review_date timestamp,
     note Number,
     texte VARCHAR(255),
     
