@@ -4,7 +4,8 @@ import logogris from '../assets/logo_txt_gris.png'
 import Sidebar from './sidebar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import gotham from '../font/GothamBold.ttf'
+import gotham from '../font/GothamBold.ttf';
+import {Link} from 'react-router-dom';
 
 
 import '../styles/homeView.css';
@@ -22,13 +23,14 @@ export default function HomeView({user, setUser, isConnected, setIsConnected}) {
          <h1 className='txtaccueil'>Notez les albums que vous avez écoutés
           <br></br> Gardez pour plus tard ceux qui vous intéressent
          </h1>
+         <Link to="/register">
          <Button href="/register" variant="contained" sx={{
           '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
-          }, color: '#FFFFFF', backgroundColor: '#1ED75A', fontFamily: gotham, marginLeft: '150px'}}>
+          }, width:'100%',color: '#FFFFFF', backgroundColor: '#1ED75A', fontFamily: gotham, marginLeft:'85px'}}>
           Commencer
-        </Button>
+        </Button></Link>
          </Stack>
         </div>
 

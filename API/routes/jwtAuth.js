@@ -9,13 +9,13 @@ const authorization = require("../middleware/autorisation")
 
 router.post("/register", validInfo, async (req,res )=> {
     try {
-        const {name, mail, password, description} = req.body
+        const {name, mail, password} = req.body
 
         const saltRound = 10
         const salt = await bcrypt.genSalt(saltRound)
         const bcryptPassword = await bcrypt.hash(password, salt)
 
-        const newUser = await pool.query("INSERT INTO polyuser (polyuser_name, polyuser_mail, polyuser_password, polyuser_description, polyuser_role) VALUES ($1, $2, $3, $4, $5) RETURNING *",[name, mail, bcryptPassword, "", "user"])
+        const newUser = await pool.query("INSERT INTO userbox (polyuser_name, polyuser_mail, polyuser_password, polyuser_description, polyuser_role) VALUES ($1, $2, $3, $4, $5) RETURNING *",[name, mail, bcryptPassword, "", "user"])
 
         const token = jwtGenerator(newUser.rows[0].polyuser_id)
         res.json({token})

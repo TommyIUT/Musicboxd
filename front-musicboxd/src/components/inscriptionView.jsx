@@ -94,7 +94,7 @@ export default function InscriptionView({user, setUser, isConnected, setIsConnec
     return (
         <div className='InscriptionView'>
             <Stack spacing={1} direction="column">
-            <p className='rejoindre'> Rejoindre <a href='/' className='lien'>Musicboxd</a></p>
+            <p className='rejoindre'> Rejoindre <Link to ='/'><a href='/' className='lien'>Musicboxd</a></Link></p>
 
             <form >
                 <div className="input-login">

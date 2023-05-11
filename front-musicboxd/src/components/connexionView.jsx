@@ -11,7 +11,7 @@ export default function connexionView({user, setUser, isConnected, setIsConnecte
     return (
         <div className='connexionView'>
             <Stack spacing={1} direction="column">
-            <a href='/' ><img src={logotxtgris} alt="Musicboxd" className='logo-login'/></a>
+            <Link to="/"><a href='/' ><img src={logotxtgris} alt="Musicboxd" className='logo-login'/></a></Link>
             <form className='login-form'>
                 <div class="input-login">
                     <label for="email">E-mail :</label>
