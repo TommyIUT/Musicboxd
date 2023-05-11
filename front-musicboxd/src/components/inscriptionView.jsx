@@ -5,8 +5,7 @@ import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import gotham from '../font/GothamBold.ttf'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
+import {Link} from 'react-router-dom';
 
 
 import '../styles/InscriptionView.css';
@@ -79,7 +78,7 @@ export default function InscriptionView() {
                   }
 
                   // crée le token de connexion
-                  
+
               }
              
           } catch (err) {
@@ -120,10 +119,11 @@ export default function InscriptionView() {
             <div className="divider"></div>
 
             <p className='noaccount'> Vous avez déjà un compte ?</p>
+            <Link to="/login">
             <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
                     color: 'white',
                     backgroundColor: '#1a1a1a',
-                }, color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>se connecter </Button>
+                }, width: '100%', color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>se connecter </Button></Link>
             </Stack>
         </div>
     

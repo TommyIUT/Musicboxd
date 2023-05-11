@@ -22,13 +22,14 @@ export default function sidebar() {
 
         <Link to="/"><img src={logotxt} alt="Musicboxd" className="logo-sidebar" /></Link>
 
+        <Link to="/">
         <Button href="/" variant="contained" startIcon={<HomeIcon />} sx={{
           '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
-          }, zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+          }, width: '100%', zIndex: '3', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           Accueil
-        </Button>
+        </Button></Link>
 
         <Link to="/search">
         <Button href="/search" variant="contained" startIcon={<SearchIcon />} sx={{ '&:hover': {
@@ -38,30 +39,32 @@ export default function sidebar() {
           Chercher
         </Button></Link>
 
-
+        <Link to="/">
         <Button href="/" variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
-          }, color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}} className='test'>
+          }, width: '100%',color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}} className='test'>
           Bibliothèque
-        </Button>
+        </Button></Link>
 
+        <Link to="/">
         <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
-          }, color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+          }, width: '100%', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
           ListenList
-        </Button>
+        </Button></Link>
 
         </Stack>
 
         <div className='enbasla'>
+        <Link to="/login">
         <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
-          }, color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+          }, width: '100%',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
           Se connecter
-        </Button>
+        </Button></Link>
         </div>
        
         

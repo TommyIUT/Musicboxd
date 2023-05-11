@@ -93,6 +93,7 @@ export default function SearchView() {
   const [results, setResults] = useState([]);
 
   const handleSearch = async (search) => {
+    console.log(search);
     try{
     const url = `https://api.deezer.com/search/${selectedButton}?q=${search}`;
     const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
@@ -147,7 +148,6 @@ function genereralbums(results) {
 
 function genererartists(results) {
   const artists = JSON.parse(results);
-  console.log(artists);
   for (let i = 0; i < artists['data'].length; i++) {
 
     const sectionArtists = document.querySelector(".resultat");

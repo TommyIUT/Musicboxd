@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import gotham from '../font/GothamBold.ttf'
+import {Link} from 'react-router-dom';
 
 export default function connexionView() {
     return (
@@ -24,12 +25,13 @@ export default function connexionView() {
                 </form>
                 <div class="divider"></div>
                 <p className='noaccount'> Vous n'avez pas de compte ?</p>
+                <Link to="/register">
                 <Button href="/register" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
                     color: 'white',
                     backgroundColor: '#1a1a1a',
-                }, color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+                }, color: 'black', width:'100%', backgroundColor: '#1ED75A', fontFamily: gotham}}>
                 S'INSCRIRE
-                </Button>
+                </Button></Link>
 
             </Stack>
 
