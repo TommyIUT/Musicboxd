@@ -44,7 +44,7 @@ export default function InscriptionView() {
         const data1 = await response1.json();
         console.log(data1);
         if (data1.length > 0){
-        toast.error('Cet identifiant existe déja');
+        toast.error('Cet identifiant existe déjà');
         }
 
 
