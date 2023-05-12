@@ -61,6 +61,17 @@ router.post("/", async (req, res) => {
     }
   });
 
+
+router.delete("/:id", async (req,res) => {
+  try {
+      const {id} = req.params
+      const deleteUser = await pool.query("DELETE FROM userbox WHERE identifiant = $1",[id])
+      res.json("User was deleted")
+  } catch (err) {
+      console.error(err.message)
+  }
+})
+
   
 
 module.exports = router

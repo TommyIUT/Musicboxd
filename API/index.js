@@ -17,7 +17,6 @@ app.use("/listenlist", require("./routes/listenlistRoute"))
 
 
 //register and login routes
-
 app.use("/auth", require("./routes/jwtAuth"))
 
 app.listen(5000, () => console.log('App running on port 5000'));

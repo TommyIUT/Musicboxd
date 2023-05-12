@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState} from "react";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
@@ -11,8 +11,15 @@ import {Link} from 'react-router-dom';
 import '../styles/InscriptionView.css';
 
 
-export default function InscriptionView({user, setUser, isConnected, setIsConnected}) {
+
+
+export default function InscriptionView({ user, setUser, isConnected, setIsConnected}) {
     const bcrypt = require('bcryptjs');
+    const [isRegistered, setIsRegistered] = useState(true)
+
+    const setAuth = boolean => {
+      setIsConnected(boolean)
+  }
 
     const handleButtonClick = async (e) => {
         e.preventDefault();
@@ -23,27 +30,13 @@ export default function InscriptionView({user, setUser, isConnected, setIsConnec
         const hashedPassword = await bcrypt.hash(password, 10);
       
         if (password === password2) {
-          const formData = {
-            identifiant: identifiant,
-            pseudo: identifiant,
-            bio: "Music addict",
-            pronoms: "",
-            localisation: "",
-            mail: email,
-            photo: "url de ma photo",
-            mot_de_passe: hashedPassword,
-            is_admin: 0,
-          };
         
           // test id unique
         const url1 = `http://localhost:5000/userbox/id/${identifiant}`;
-        console.log(url1);
         const response1 = await fetch(url1, {
             method: "GET"
         });
-        console.log(response1);
         const data1 = await response1.json();
-        console.log(data1);
         if (data1.length > 0){
           toast.error('Cet identifiant existe déjà');
         }
@@ -51,12 +44,10 @@ export default function InscriptionView({user, setUser, isConnected, setIsConnec
 
         // test mail unique
         const url2 = `http://localhost:5000/userbox/mail/${email}`;
-        console.log(url2);
         const response2 = await fetch(url2, {
             method: "GET"
         });
         const data2 = await response2.json();
-        console.log(data2);
 
         if (data2.length>0){
          toast.error('Ce mail est déjà utilisé');
@@ -64,27 +55,29 @@ export default function InscriptionView({user, setUser, isConnected, setIsConnec
           try {
             
               if (data1.length===0 && data2.length===0){
-                const response = await fetch("http://localhost:5000/userbox", {
+                const body = {email, hashedPassword, identifiant}
+                const response = await fetch("http://localhost:5000/auth/register", {
                     method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                  });
-            
-                  if (response.ok) {
+                    headers: {"Content-Type" : "application/json"},
+                    body: JSON.stringify(body)
+                })
+                const parseRes = await response.json()
+                console.log(parseRes)
+                if (parseRes.invalid) {
+                  toast.error('Erreur lors de la création du compte');
+                }
+                else {
+                    localStorage.setItem("token",parseRes.token)
+                    setAuth(true)
                     toast.success("Compte créé avec succès !");
-                  } else {
-                    toast.error("Erreur lors de la création du compte !");
-                  }
-
-                  // crée le token de connexion
+                }
 
 
               }
              
           } catch (err) {
             toast.error("Erreur lors de la création du compte !");
+            console.log(err)
           }
         } else {
           toast.error("Les mots de passe ne correspondent pas");

@@ -8,40 +8,15 @@ const authorization = require("../middleware/autorisation")
 //registering
 
 router.post("/register", validInfo, async (req,res )=> {
+    console.log('test')
     try {
         const {name, mail, password} = req.body
+        console.log(req.body)   
 
-        const saltRound = 10
-        const salt = await bcrypt.genSalt(saltRound)
-        const bcryptPassword = await bcrypt.hash(password, salt)
+        const newUser = await pool.query("INSERT INTO userbox (identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe, is_admin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",[name,name,"","","", mail,"lien photo", password, false])
 
-        const newUser = await pool.query("INSERT INTO userbox (polyuser_name, polyuser_mail, polyuser_password, polyuser_description, polyuser_role) VALUES ($1, $2, $3, $4, $5) RETURNING *",[name, mail, bcryptPassword, "", "user"])
-
-        const token = jwtGenerator(newUser.rows[0].polyuser_id)
+        const token = jwtGenerator(newUser.rows[0].identifiant)
         res.json({token})
-
-
-        
-    } catch (err) {
-        console.error(err.message)
-        res.status(500).send("Server error")
-    }
-})
-
-router.put("/register", validInfo, async (req,res )=> {
-    try {
-        const {name, mail, password, description, id} = req.body
-
-        const saltRound = 10
-        const salt = await bcrypt.genSalt(saltRound)
-        const bcryptPassword = await bcrypt.hash(password, salt)
-
-        const newUser = await pool.query("UPDATE polyuser SET polyuser_name = $1, polyuser_mail = $2, polyuser_password = $3, polyuser_description = $4 WHERE polyuser_id = $5 RETURNING *",[name, mail, bcryptPassword, description, id])
-
-        const token = jwtGenerator(newUser.rows[0].polyuser_id)
-        res.json({token})
-
-
         
     } catch (err) {
         console.error(err.message)
@@ -56,14 +31,14 @@ router.post("/login", validInfo, async (req,res) => {
         console.log("coucou")
         
         const {mail, password} = req.body
-        const user = await pool.query("SELECT * FROM polyuser WHERE polyuser_mail = $1",[mail])
-        const validPassword = await bcrypt.compare(password,user.rows[0].polyuser_password)
+        const user = await pool.query("SELECT * FROM userbox WHERE mail = $1",[mail])
+        const validPassword = await bcrypt.compare(password,user.rows[0].mot_de_passe)
 
         if (!validPassword) {
             return res.json({valid: false})
         }
 
-        const token = await jwtGenerator(user.rows[0].polyuser_id)
+        const token = await jwtGenerator(user.rows[0].identifiant)
         res.json({token, valid:true})
 
     } catch (err) {
