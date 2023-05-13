@@ -11,6 +11,16 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 export default function connexionView({user, setUser, isConnected, setIsConnected}) {
+
+    const handleButtonClick = async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+    }
+
+
+
     return (
         <div className='connexionView'>
             <Stack spacing={1} direction="column">
@@ -24,9 +34,10 @@ export default function connexionView({user, setUser, isConnected, setIsConnecte
                     <label for="password">Mot de passe :</label>
                     <input type="password" id="password" name="password" required></input>
                 </div>
-                <button type="submit" className='login-button'>SE CONNECTER</button>
-                </form>
+                <button type="submit" className='login-button' onClick={handleButtonClick}>SE CONNECTER</button>
+            </form>
                 <ToastContainer />
+
                 <div class="divider"></div>
                 <p className='noaccount'> Vous n'avez pas de compte ?</p>
                 <Link to="/register">
