@@ -6,6 +6,9 @@ import Button from '@mui/material/Button';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import gotham from '../font/GothamBold.ttf'
 import {Link} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+
+
 
 export default function connexionView({user, setUser, isConnected, setIsConnected}) {
     return (
@@ -23,6 +26,7 @@ export default function connexionView({user, setUser, isConnected, setIsConnecte
                 </div>
                 <button type="submit" className='login-button'>SE CONNECTER</button>
                 </form>
+                <ToastContainer />
                 <div class="divider"></div>
                 <p className='noaccount'> Vous n'avez pas de compte ?</p>
                 <Link to="/register">

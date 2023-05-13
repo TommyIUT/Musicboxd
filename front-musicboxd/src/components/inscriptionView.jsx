@@ -5,7 +5,7 @@ import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import gotham from '../font/GothamBold.ttf'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 
 
 import '../styles/InscriptionView.css';
@@ -14,6 +14,7 @@ import '../styles/InscriptionView.css';
 
 
 export default function InscriptionView({ user, setUser, isConnected, setIsConnected}) {
+  const navigate = useNavigate();
     const bcrypt = require('bcryptjs');
     const [isRegistered, setIsRegistered] = useState(true)
 
@@ -28,60 +29,68 @@ export default function InscriptionView({ user, setUser, isConnected, setIsConne
         const password = document.getElementById("password").value;
         const password2 = document.getElementById("password2").value;
         const hashedPassword = await bcrypt.hash(password, 10);
-      
-        if (password === password2) {
+
+
+        if (!(email==='') && !(identifiant ==='') && !(password==='')){
+          if (password === password2) {
         
-          // test id unique
-        const url1 = `http://localhost:5000/userbox/id/${identifiant}`;
-        const response1 = await fetch(url1, {
-            method: "GET"
-        });
-        const data1 = await response1.json();
-        if (data1.length > 0){
-          toast.error('Cet identifiant existe déjà');
-        }
-
-
-        // test mail unique
-        const url2 = `http://localhost:5000/userbox/mail/${email}`;
-        const response2 = await fetch(url2, {
-            method: "GET"
-        });
-        const data2 = await response2.json();
-
-        if (data2.length>0){
-         toast.error('Ce mail est déjà utilisé');
-        }
-          try {
-            
-              if (data1.length===0 && data2.length===0){
-                const body = {email, hashedPassword, identifiant}
-                const response = await fetch("http://localhost:5000/auth/register", {
-                    method: "POST",
-                    headers: {"Content-Type" : "application/json"},
-                    body: JSON.stringify(body)
-                })
-                const parseRes = await response.json()
-                console.log(parseRes)
-                if (parseRes.invalid) {
-                  toast.error('Erreur lors de la création du compte');
-                }
-                else {
-                    localStorage.setItem("token",parseRes.token)
-                    setAuth(true)
-                    toast.success("Compte créé avec succès !");
-                }
-
-
+            // test id unique
+            const url1 = `http://localhost:5000/userbox/id/${identifiant}`;
+            const response1 = await fetch(url1, {
+                method: "GET"
+            });
+            const data1 = await response1.json();
+            if (data1.length > 0){
+              toast.error('Cet identifiant existe déjà');
+            }
+    
+    
+            // test mail unique
+            const url2 = `http://localhost:5000/userbox/mail/${email}`;
+            const response2 = await fetch(url2, {
+                method: "GET"
+            });
+            const data2 = await response2.json();
+    
+            if (data2.length>0){
+             toast.error('Ce mail est déjà utilisé');
+            }
+              try {
+                
+                  if (data1.length===0 && data2.length===0){
+                    const body = {email, hashedPassword, identifiant}
+                    const response = await fetch("http://localhost:5000/auth/register", {
+                        method: "POST",
+                        headers: {"Content-Type" : "application/json"},
+                        body: JSON.stringify(body)
+                    })
+                    const parseRes = await response.json()
+                    console.log(parseRes)
+                    if (parseRes.invalid) {
+                      toast.error('Erreur lors de la création du compte');
+                    }
+                    else {
+                        toast.success("Compte créé avec succès !");
+                        localStorage.setItem("token",parseRes.token)
+                        setAuth(true)
+                        navigate('/')
+                    }
+    
+    
+                  }
+                 
+              } catch (err) {
+                toast.error("Erreur lors de la création du compte !");
+                console.log(err)
               }
-             
-          } catch (err) {
-            toast.error("Erreur lors de la création du compte !");
-            console.log(err)
-          }
+            } else {
+              toast.error("Les mots de passe ne correspondent pas");
+            }
         } else {
-          toast.error("Les mots de passe ne correspondent pas");
+          toast.error("Veuillez tout remplir svp");
         }
+
+        
       };
       
     

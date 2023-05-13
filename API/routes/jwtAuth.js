@@ -8,12 +8,11 @@ const authorization = require("../middleware/autorisation")
 //registering
 
 router.post("/register",validInfo, async (req,res )=> {
-    console.log('test')
     try {
         const {email, hashedPassword, identifiant} = req.body
         console.log(req.body)   
 
-        const newUser = await pool.query("INSERT INTO userbox (identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe, is_admin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",[identifiant,identifiant,"","","", email,"lien photo", hashedPassword, false])
+        const newUser = await pool.query("INSERT INTO userbox (identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe, is_admin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",[identifiant,identifiant,"","","", email,"https://cdn.discordapp.com/attachments/622842513652449280/1106992345741795469/image.png", hashedPassword, false])
 
         const token = jwtGenerator(newUser.rows[0].identifiant)
         res.json({token})
