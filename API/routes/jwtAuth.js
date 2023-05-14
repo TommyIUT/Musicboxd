@@ -30,7 +30,6 @@ router.post("/login", validInfo, async (req,res) => {
         
         const {mail, password} = req.body
         const user = await pool.query("SELECT * FROM userbox WHERE mail = $1",[mail])
-        console.log(password)
         const validPassword = (password === user.rows[0].mot_de_passe)
 
         if (!validPassword) {

@@ -13,7 +13,7 @@ import '../styles/homeView.css';
 export default function HomeView({user, setUser, isConnected, setIsConnected}) {
   return (
     <div className="homeView">
-      <Sidebar></Sidebar>
+      <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
       <Stack spacing={0} direction="column">
 
         <div className='home'>

@@ -173,7 +173,7 @@ function genererartists(results) {
 
   return (
     <div className="searchView">
-      <Sidebar></Sidebar>
+      <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
       <Stack spacing={0} direction="column">
         <div className='recherche'>
         <Stack spacing={5} direction="row">

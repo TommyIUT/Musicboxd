@@ -4,10 +4,7 @@ import Sidebar from './sidebar';
 export default function userView({user, setUser, isConnected, setIsConnected}) {
   return (
     <div className="userView">
-      <h1>Voici la page user</h1>
-      <div className="buttons">
-        <Sidebar />
-      </div>
+      <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
     </div>
   );
 }

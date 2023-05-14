@@ -35,13 +35,11 @@ export default function ConnexionView({user, setUser, isConnected, setIsConnecte
                 toast.error(mail + " n'existe pas");
             } else {
                 const body = {mail, password}
-                console.log(body)
                 const response = await fetch("http://localhost:5000/auth/login", {
                         method: "POST",
                         headers: {"Content-Type" : "application/json"},
                         body: JSON.stringify(body)
                     })
-                console.log(response)
                 const parseRes = await response.json()
                 if (parseRes.invalid) {
                     toast.error('Le mot de passe est incorrect');
