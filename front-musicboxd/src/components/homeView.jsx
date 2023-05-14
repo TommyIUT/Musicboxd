@@ -23,6 +23,7 @@ export default function HomeView({user, setUser, isConnected, setIsConnected}) {
          <h1 className='txtaccueil'>Notez les albums que vous avez écoutés
           <br></br> Gardez pour plus tard ceux qui vous intéressent
          </h1>
+         {isConnected ? null :
          <Link to="/register">
          <Button href="/register" variant="contained" sx={{
           '&:hover': {
@@ -30,7 +31,7 @@ export default function HomeView({user, setUser, isConnected, setIsConnected}) {
             backgroundColor: '#1a1a1a',
           }, width:'100%',color: '#FFFFFF', backgroundColor: '#1ED75A', fontFamily: gotham, marginLeft:'85px'}}>
           Commencer
-        </Button></Link>
+        </Button></Link>}
          </Stack>
         </div>
 

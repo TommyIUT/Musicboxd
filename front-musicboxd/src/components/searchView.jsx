@@ -93,7 +93,6 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
   const [results, setResults] = useState([]);
 
   const handleSearch = async (search) => {
-    console.log(search);
     try{
     const url = `https://api.deezer.com/search/${selectedButton}?q=${search}`;
     const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
@@ -119,8 +118,6 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
   
 
 function genereralbums(results) {
-
-  console.log("recherche...");
 
   const albums = JSON.parse(results);
 
