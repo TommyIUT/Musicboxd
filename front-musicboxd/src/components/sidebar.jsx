@@ -17,17 +17,6 @@ import '../styles/sidebar.css';
 
 export default function Sidebar({user, setUser, isConnected, setIsConnected}) {
 
-  const setAuth = boolean => {
-    setIsConnected(boolean)
-}
-
-  function logout() {
-    setAuth(false)
-    localStorage.removeItem("token")
-    setUser({})
-    toast.success("Déconnexion réussie");
-  }
-
     return (
       
       <div className='bar' >
@@ -72,12 +61,12 @@ export default function Sidebar({user, setUser, isConnected, setIsConnected}) {
         </Stack>
 
         <div className='enbasla'>
-        {isConnected ? (<Button  variant="contained" startIcon={<AccountCircleSharpIcon />} onClick={logout} sx={{ '&:hover': {
+        {isConnected ? (<Link to="/user"><Button  variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
           color: 'white',
           backgroundColor: '#1a1a1a',
         }, width: '100%',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
-          Se déconnecter
-        </Button>) :(
+          Profil
+        </Button></Link>) :(
         <Link to="/login">
         <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
             color: 'white',
