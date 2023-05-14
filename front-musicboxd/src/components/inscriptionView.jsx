@@ -72,7 +72,7 @@ export default function InscriptionView({ user, setUser, isConnected, setIsConne
                         toast.success("Compte créé avec succès");
                         localStorage.setItem("token",parseRes.token)
                         setAuth(true)
-                        navigate('/')
+                        navigate('/user')
                     }
     
     
