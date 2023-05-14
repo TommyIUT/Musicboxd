@@ -12,15 +12,15 @@ import '../styles/InscriptionView.css';
 
 
 
-
 export default function InscriptionView({ user, setUser, isConnected, setIsConnected}) {
   const navigate = useNavigate();
+    
     const bcrypt = require('bcryptjs');
     const [isRegistered, setIsRegistered] = useState(true)
 
     const setAuth = boolean => {
       setIsConnected(boolean)
-  }
+    }
 
     const handleButtonClick = async (e) => {
         e.preventDefault();
@@ -65,12 +65,11 @@ export default function InscriptionView({ user, setUser, isConnected, setIsConne
                         body: JSON.stringify(body)
                     })
                     const parseRes = await response.json()
-                    console.log(parseRes)
                     if (parseRes.invalid) {
                       toast.error('Erreur lors de la création du compte');
                     }
                     else {
-                        toast.success("Compte créé avec succès !");
+                        toast.success("Compte créé avec succès");
                         localStorage.setItem("token",parseRes.token)
                         setAuth(true)
                         navigate('/')

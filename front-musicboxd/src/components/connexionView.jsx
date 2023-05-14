@@ -1,21 +1,62 @@
-import * as React from 'react';
 import '../styles/connexionView.css';
 import logotxtgris from '../assets/logo_txt_gris.png'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import gotham from '../font/GothamBold.ttf'
-import {Link} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import {Link, useNavigate} from 'react-router-dom';
 
 
+export default function ConnexionView({user, setUser, isConnected, setIsConnected}) {
+    const bcrypt = require('bcryptjs');
+    const navigate = useNavigate();
 
-export default function connexionView({user, setUser, isConnected, setIsConnected}) {
+    const setAuth = boolean => {
+        setIsConnected(boolean)
+    }
 
     const handleButtonClick = async (e) => {
         e.preventDefault();
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+        const mail = document.getElementById("email").value;
+        const passwd = document.getElementById("password").value;
+        const password = await bcrypt.hash(passwd, 10);
+
+        if (!(mail==='') && !(password==='')){
+
+            // test si mail existe
+            const url = `http://localhost:5000/userbox/mail/${mail}`;
+            const response = await fetch(url, {
+                method: "GET"
+            });
+            const data = await response.json();
+    
+            if (data.length===0){
+                toast.error(mail + " n'existe pas");
+            } else {
+                const body = {mail, password}
+                console.log(body)
+                const response = await fetch("http://localhost:5000/auth/login", {
+                        method: "POST",
+                        headers: {"Content-Type" : "application/json"},
+                        body: JSON.stringify(body)
+                    })
+                console.log(response)
+                const parseRes = await response.json()
+                if (parseRes.invalid) {
+                    toast.error('Le mot de passe est incorrect');
+                } else {
+                    toast.success("Connexion réussie");
+                    localStorage.setItem("token",parseRes.token)
+                    setAuth(true)
+                    navigate('/')
+                }
+
+            }
+
+        } else {
+            toast.error("Veuillez tout remplir");
+        }
 
     }
 

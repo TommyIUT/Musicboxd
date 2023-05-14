@@ -27,11 +27,11 @@ router.post("/register",validInfo, async (req,res )=> {
 
 router.post("/login", validInfo, async (req,res) => {
     try {
-        console.log("coucou")
         
         const {mail, password} = req.body
         const user = await pool.query("SELECT * FROM userbox WHERE mail = $1",[mail])
-        const validPassword = await bcrypt.compare(password,user.rows[0].mot_de_passe)
+        console.log(password)
+        const validPassword = (password === user.rows[0].mot_de_passe)
 
         if (!validPassword) {
             return res.json({valid: false})
