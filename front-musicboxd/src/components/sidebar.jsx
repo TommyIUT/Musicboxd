@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import AlbumIcon from '@mui/icons-material/Album';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import Stack from '@mui/material/Stack';
-
+import { ToastContainer, toast } from 'react-toastify';
 import gotham from '../font/GothamBold.ttf'
 import logotxt from '../assets/logo_txt.png'
 
@@ -15,11 +15,23 @@ import '../styles/sidebar.css';
 
 
 
-export default function sidebar({user, setUser, isConnected, setIsConnected}) {
+export default function Sidebar({user, setUser, isConnected, setIsConnected}) {
+
+  const setAuth = boolean => {
+    setIsConnected(boolean)
+}
+
+  function logout() {
+    setAuth(false)
+    localStorage.removeItem("token")
+    setUser({})
+    toast.success("Déconnexion réussie");
+  }
+
     return (
       
       <div className='bar' >
-
+        <ToastContainer />
         <Stack spacing={1} direction="column">
 
         <Link to="/"><img src={logotxt} alt="Musicboxd" className="logo-sidebar" /></Link>
@@ -60,13 +72,20 @@ export default function sidebar({user, setUser, isConnected, setIsConnected}) {
         </Stack>
 
         <div className='enbasla'>
+        {isConnected ? (<Button  variant="contained" startIcon={<AccountCircleSharpIcon />} onClick={logout} sx={{ '&:hover': {
+          color: 'white',
+          backgroundColor: '#1a1a1a',
+        }, width: '100%',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+          Se déconnecter
+        </Button>) :(
         <Link to="/login">
         <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
           }, width: '100%',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
           Se connecter
-        </Button></Link>
+        </Button></Link>)
+        }
         </div>
        
         

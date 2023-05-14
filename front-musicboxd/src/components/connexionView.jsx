@@ -12,6 +12,8 @@ export default function ConnexionView({user, setUser, isConnected, setIsConnecte
     const bcrypt = require('bcryptjs');
     const navigate = useNavigate();
 
+    console.log(isConnected)
+
     const setAuth = boolean => {
         setIsConnected(boolean)
     }
