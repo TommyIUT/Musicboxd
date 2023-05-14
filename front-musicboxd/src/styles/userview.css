@@ -21,3 +21,33 @@
     background-color: #1a1a1a;
     color: white;
 }
+
+.pseudo{
+    font-family: 'GothamBold';
+    font-size: 10vh;
+    margin-left: 10px;
+}
+
+.idUser{
+    margin-left: 20px;
+    font-size: 3vh;
+    margin-top: -45px;
+    color: #1ED75A;
+}
+
+.pronomUser{
+    margin-left: 20px;
+    font-size: 4vh;
+    margin-top: 0px;
+}
+
+.espace{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.bioUser{
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 600px;
+}
