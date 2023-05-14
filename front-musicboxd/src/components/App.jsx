@@ -10,7 +10,7 @@ import {useState} from "react";
 
 function App() {
 
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState('')
   const [isConnected, setIsConnected] = useState(false)
 
   return (

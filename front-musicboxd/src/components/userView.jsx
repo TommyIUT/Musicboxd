@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './sidebar';
+import {Link, useNavigate } from 'react-router-dom';
 
 
 
-function getUserFromToken(token) {
-  try {
-    const decodedToken = jwt.verify(token, process.env.jwtSecret);
-    const userId = decodedToken.polyuser;
-    return userId;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-}
 
-export default function userView({path, user, setUser, isConnected, setIsConnected}) {
-  const token = localStorage.getItem("token");
-  const userId = getUserFromToken(token);
+
+export default function UserView({ user, setUser, isConnected, setIsConnected}) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user === ''){
+      navigate('/login')
+    }
+  }, [user, navigate]);
+
   
   return (
     <div className="userView">

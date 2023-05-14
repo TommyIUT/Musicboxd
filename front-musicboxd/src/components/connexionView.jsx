@@ -47,6 +47,7 @@ export default function ConnexionView({user, setUser, isConnected, setIsConnecte
                     toast.success("Connexion réussie");
                     localStorage.setItem("token",parseRes.token)
                     setAuth(true)
+                    setUser(data[0].identifiant)
                     navigate('/')
                 }
 
