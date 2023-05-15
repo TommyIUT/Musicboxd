@@ -13,7 +13,6 @@ import '../styles/userview.css'
 export default function UserView({ user, setUser, isConnected, setIsConnected}) {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
-  console.log(user)
 
   useEffect(() => {
     if (user === ''){
@@ -39,7 +38,7 @@ export default function UserView({ user, setUser, isConnected, setIsConnected}) 
       navigate('/login')
     }
   }
-
+  
   return (
     <div className="userView">
       <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>

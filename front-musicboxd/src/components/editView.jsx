@@ -13,6 +13,8 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
     useEffect(() => {
         if (user === ''){
         navigate('/login')
+        } else {
+        fetchUser(user);
         }
     }, [user, navigate]);
 
@@ -33,11 +35,9 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
         }
     }
 
-    console.log(userData)
-
   return (
     <div className="editView">
-      
+      blabla
     </div>
   );
 }
