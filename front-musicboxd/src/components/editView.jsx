@@ -2,24 +2,45 @@ import React, { useEffect, useState } from 'react';
 import {Link, useNavigate } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
+import TextField from '@mui/material/TextField';
+import { alpha, styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 
 
 import '../styles/editview.css'
+
+const CssTextField = styled(TextField)({
+    '& label.Mui-focused': {
+      color: '#1ED75A',
+    },
+    '& label': {
+        color: '#1ED75A',
+      },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#1ED75A',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#1ED75A',
+      },
+      '&:hover fieldset': {
+        borderColor: '#1ED75A',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#1ED75A',
+      },
+    },
+  });
 
 
 export default function EditView({ user, setUser, isConnected, setIsConnected}) {
     const [userData, setUserData] = useState(null);
     const [pseudo, setPseudo] = useState('');
     const [localisation, setLocalisation] = useState('');
+    const [bio, setBio] = useState('');
+    const [photo, setPhoto] = useState('');
     const navigate = useNavigate(); 
 
-    const handlePseudoChange = (e) => {
-        setPseudo(e.target.value);
-      };
-    
-      const handleLocalisationChange = (e) => {
-        setLocalisation(e.target.value);
-      };
     
 
     useEffect(() => {
@@ -43,6 +64,8 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
         const res = [data[0].pseudo, data[0].bio, data[0].pronoms, data[0].localisation, data[0].photo]
         setPseudo(data[0].pseudo)
         setLocalisation(data[0].localisation)
+        setBio(data[0].bio)
+        setPhoto(data[0].photo)
         setUserData(res)
         } catch {
         navigate('/login')
@@ -52,20 +75,75 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
     return (
         <div className="editView">
           {userData ? (
-            <Stack spacing={1} direction="row" sx={{ marginTop: '100px', marginLeft: '250px', marginRight: '250px' }}>
+            
+            <Stack spacing={0} direction="row" sx={{ marginTop: '100px', marginLeft: '200px', marginRight: '200px' , backgroundColor:'#000000'}}>
+              <Box
+                sx={{
+                    width: '500px',
+                    maxWidth: '100%',
+                    marginLeft:'10px'
+                }}
+                >
               <Stack spacing={3} direction="column">
-                <form className="login-form">
-                  <div className="input-login">
-                    <label htmlFor="pseudo">Pseudo</label>
-                    <input type="modif" id="pseudo" name="pseudo" value={pseudo} onChange={handlePseudoChange} />
-                  </div>
-                  <div className="input-login">
-                    <label htmlFor="localisation">Localisation</label>
-                    <input type="modif" id="localisation" name="localisation" value={localisation} onChange={handleLocalisationChange} />
-                  </div>
-                </form>
-              </Stack>
-              <Stack spacing={3} direction="column"></Stack>
+              <CssTextField label="Pseudo" id="pseudo"
+                    defaultValue={pseudo}
+                    fullWidth
+                    borderColor='white'
+                    InputProps={{
+                        style: {
+                        color: 'white',
+                        borderColor: '#1ED75A',
+                        },
+                    }}
+                    sx={{marginRight:'45px'}}
+                />
+                <CssTextField label="Localisation" id="localisation"
+                    defaultValue={localisation}
+                    fullWidth
+                    borderColor='white'
+                    InputProps={{
+                        style: {
+                        color: 'white',
+                        borderColor: '#1ED75A',
+                        },
+                    }}
+                />
+              </Stack></Box>
+              <Box
+                sx={{
+                    width: '500px',
+                    maxWidth: '100%',
+                    marginLeft:'100px'
+                }}
+                >
+              <Stack spacing={3} direction="column">
+              
+                <CssTextField label="Lien vers votre photo de profil" id="photo"
+                    defaultValue={photo}
+                    fullWidth
+                    borderColor='white'
+                    multiline
+                    InputProps={{
+                        style: {
+                        color: 'white',
+                        borderColor: '#1ED75A',
+                        },
+                    }}
+                />
+                <CssTextField label="Bio" id="bio"
+                defaultValue={bio}
+                InputProps={{
+                    style: {
+                    color: 'white',
+                    borderColor: '#1ED75A',
+                    },
+                }}
+                multiline
+                width='250px'
+                fullWidth
+                />
+              </Stack></Box>
+              
             </Stack>
           ) : (
             <CircularProgress />
