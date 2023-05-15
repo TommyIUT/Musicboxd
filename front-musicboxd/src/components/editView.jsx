@@ -4,10 +4,35 @@ import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
 import { alpha, styled } from '@mui/material/styles';
+import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 
 
 import '../styles/editview.css'
+
+
+const pronoms = [
+    {
+      value: 'he/him',
+      label: 'he/him',
+    },
+    {
+      value: 'she/her',
+      label: 'she/her',
+    },
+    {
+      value: 'they/them',
+      label: 'they/them',
+    },
+    {
+      value: 'others',
+      label: 'others',
+    },
+    {
+      value: '',
+      label: '',
+    },
+  ];
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -39,6 +64,7 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
     const [localisation, setLocalisation] = useState('');
     const [bio, setBio] = useState('');
     const [photo, setPhoto] = useState('');
+    const [pronom, setPronoms] = useState('');
     const navigate = useNavigate(); 
 
     
@@ -66,6 +92,7 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
         setLocalisation(data[0].localisation)
         setBio(data[0].bio)
         setPhoto(data[0].photo)
+        setPronoms(data[0].pronoms)
         setUserData(res)
         } catch {
         navigate('/login')
@@ -108,6 +135,26 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
                         },
                     }}
                 />
+                <CssTextField label="Pronoms" id="pronoms"
+                    defaultValue={pronom}
+                    fullWidth
+                    borderColor='white'
+                    InputProps={{
+                        style: {
+                        color: 'white',
+                        borderColor: '#1ED75A',
+                        },
+                    }}
+                    sx={{marginRight:'45px'}}
+                    select
+
+                >
+                {pronoms.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                    </MenuItem>
+                ))}
+                </CssTextField>
               </Stack></Box>
               <Box
                 sx={{
