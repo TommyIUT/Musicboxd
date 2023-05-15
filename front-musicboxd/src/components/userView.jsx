@@ -43,6 +43,7 @@ export default function UserView({ user, setUser, isConnected, setIsConnected}) 
     <div className="userView">
       <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
       {userData ? (
+        <Stack spacing={3} direction="column">
         <Stack spacing={1} direction="row">
         <Stack spacing={3} direction="column">
         <Link to={userData[4]} target="_blank">
@@ -64,6 +65,24 @@ export default function UserView({ user, setUser, isConnected, setIsConnected}) 
         <p className='idUser'>@{user}</p>
         <p className='pronomUser'>{userData[2]}<span className='espace'></span><Link to= {`https://www.google.com/maps/place/${userData[3]}`} target="_blank">{userData[3]}</Link></p>
         <p className='bioUser'>{userData[1]}</p>
+        </Stack>
+        </Stack>
+        <p className='bibliothequeUser'>Bibliothèque</p>
+        <Stack spacing={0} direction="row">
+        <Link to="/albums">
+        <Button href="/login" variant="contained" sx={{ '&:hover': {
+            color: 'white',
+            backgroundColor: '#1a1a1a',
+          }, marginTop:'20px',marginLeft:'200px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+          Albums
+        </Button></Link>
+        <Link to="/artists">
+        <Button href="/login" variant="contained" sx={{ '&:hover': {
+            color: 'white',
+            backgroundColor: '#1a1a1a',
+          }, marginTop:'20px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+          Artistes
+        </Button></Link>
         </Stack>
         </Stack>
       ) : (
