@@ -82,6 +82,11 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
         const newpseudo = document.getElementById("pseudo").value;
         setPseudo(newpseudo)
     }
+
+    const handlePronomChange = (event) => {
+        setPronom(event.target.value);
+        console.log(pronom)
+    };
     
     function logout() {
         setIsConnected(false)
@@ -95,7 +100,7 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
     const modifuser = async (e) => {
         const newpseudo = document.getElementById("pseudo").value;
         const newphoto = document.getElementById("photo").value;
-        const newpronoms = document.getElementById("pronoms").value;
+        const newpronoms = pronom
         const newloc = document.getElementById("localisation").value;
         const newbio = document.getElementById("bio").value;
         if (newpseudo===''){
@@ -105,7 +110,7 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
         } else{
             const body = {newpseudo, newbio, newpronoms, newloc,newphoto}
             const url = 'http://localhost:5000/userbox/'+user;
-            console.log(url)
+            console.log(body)
             try{
                 const response = await fetch(url, {
                         method: "PUT",
@@ -199,6 +204,7 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
                 <CssTextField label="Pronoms" id="pronoms"
                     defaultValue={pronom}
                     fullWidth
+                    onChange={handlePronomChange}
                     borderColor='white'
                     InputProps={{
                         style: {
@@ -208,7 +214,6 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
                     }}
                     sx={{marginRight:'45px'}}
                     select
-
                 >
                 {pronoms.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
