@@ -5,6 +5,7 @@ import UserView from './userView.jsx'
 import ConnexionView from './connexionView.jsx'
 import InscriptionView from'./inscriptionView.jsx'
 import SearchView from './searchView.jsx';
+import EditView from './editView.jsx';
 import {useState} from "react";
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/login' exact element={<ConnexionView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/register' exact element={<InscriptionView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/search' exact element={<SearchView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
+          <Route path='/edit' exact element={<EditView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
         </Routes>
       </Router>
     </div>
