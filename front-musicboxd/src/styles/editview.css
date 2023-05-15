@@ -42,3 +42,9 @@ input[type="modif"] {
 	border: none;
 	font-size: 16px;
   }
+
+  .pseudoModif{
+    font-family: 'GothamBold';
+    font-size: 75px;
+    margin-left: 20px;
+  }

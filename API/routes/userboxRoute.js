@@ -49,10 +49,10 @@ router.post("/", async (req, res) => {
   router.put("/:id", async (req, res) => {
     try {
       const { id } = req.params;
-      const { identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe } = req.body;
+      const { pseudo, bio, pronoms, localisation, photo } = req.body;
       const updateUser = await pool.query(
-        "UPDATE userbox SET pseudo = $2, bio = $3, pronoms = $4, localisation = $5, mail = $6 , photo = $7, mot_de_passe = $8 WHERE identifiant = $1 ;",
-        [identifiant, pseudo, bio, pronoms, localisation, mail, photo, mot_de_passe]
+        "UPDATE userbox SET pseudo = $2, bio = $3, pronoms = $4, localisation = $5, photo = $6 WHERE identifiant = $1 ;",
+        [id, pseudo, bio, pronoms, localisation, photo]
       );
       res.json(updateUser.rows[0]);
     } catch (err) {

@@ -6,6 +6,10 @@ import TextField from '@mui/material/TextField';
 import { alpha, styled } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import gotham from '../font/GothamBold.ttf';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 import '../styles/editview.css'
@@ -58,16 +62,64 @@ const CssTextField = styled(TextField)({
   });
 
 
+
+
 export default function EditView({ user, setUser, isConnected, setIsConnected}) {
     const [userData, setUserData] = useState(null);
     const [pseudo, setPseudo] = useState('');
     const [localisation, setLocalisation] = useState('');
     const [bio, setBio] = useState('');
     const [photo, setPhoto] = useState('');
-    const [pronom, setPronoms] = useState('');
+    const [pronom, setPronom] = useState('');
     const navigate = useNavigate(); 
 
+    function changePhoto(){
+        const newphoto = document.getElementById("photo").value;
+        setPhoto(newphoto)
+    }
+
+    function changePseudo(){
+        const newpseudo = document.getElementById("pseudo").value;
+        setPseudo(newpseudo)
+    }
     
+    function logout() {
+        setIsConnected(false)
+        localStorage.removeItem("token")
+        setUser({})
+        setUserData(null)
+        toast.success("Déconnexion réussie");
+        navigate('/')
+      }
+
+    const modifuser = async (e) => {
+        const newpseudo = document.getElementById("pseudo").value;
+        const newphoto = document.getElementById("photo").value;
+        const newpronoms = document.getElementById("pronoms").value;
+        const newloc = document.getElementById("localisation").value;
+        const newbio = document.getElementById("bio").value;
+        if (newpseudo===''){
+            toast.error("Veuillez renseigner votre pseudo");
+        } else if(newphoto==='') {
+            toast.error('Veuillez renseigner une photo de profil valide')
+        } else{
+            const body = {newpseudo, newbio, newpronoms, newloc,newphoto}
+            const url = 'http://localhost:5000/userbox/'+user;
+            console.log(url)
+            try{
+                const response = await fetch(url, {
+                        method: "PUT",
+                        headers: {"Content-Type" : "application/json"},
+                        body: JSON.stringify(body)
+                    })
+                console.log(response)
+                navigate('/user')
+            }catch{
+                toast.error('Erreur lors de la sauvegarde')
+            }
+           
+        }
+    }
 
     useEffect(() => {
         if (user === ''){
@@ -92,7 +144,7 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
         setLocalisation(data[0].localisation)
         setBio(data[0].bio)
         setPhoto(data[0].photo)
-        setPronoms(data[0].pronoms)
+        setPronom(data[0].pronoms)
         setUserData(res)
         } catch {
         navigate('/login')
@@ -103,7 +155,15 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
         <div className="editView">
           {userData ? (
             
-            <Stack spacing={0} direction="row" sx={{ marginTop: '100px', marginLeft: '200px', marginRight: '200px' , backgroundColor:'#000000'}}>
+            <Stack direction="column">
+                <ToastContainer />
+            <Stack direction="row">
+            <Avatar alt={user}
+            src={photo}
+            sx={{ width: 150, height: 150, marginTop: '30px', marginLeft: '400px'}}/>
+            <h1 className='pseudoModif'>{pseudo}</h1>
+            </Stack>
+            <Stack spacing={0} direction="row" sx={{ marginTop: '50px', marginLeft: '200px', marginRight: '200px' }}>
               <Box
                 sx={{
                     width: '500px',
@@ -116,6 +176,7 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
                     defaultValue={pseudo}
                     fullWidth
                     borderColor='white'
+                    onChange={changePseudo}
                     InputProps={{
                         style: {
                         color: 'white',
@@ -167,9 +228,11 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
               
                 <CssTextField label="Lien vers votre photo de profil" id="photo"
                     defaultValue={photo}
+                    maxRows={5}
                     fullWidth
                     borderColor='white'
                     multiline
+                    onChange={changePhoto}
                     InputProps={{
                         style: {
                         color: 'white',
@@ -179,6 +242,7 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
                 />
                 <CssTextField label="Bio" id="bio"
                 defaultValue={bio}
+                maxRows={5}
                 InputProps={{
                     style: {
                     color: 'white',
@@ -191,6 +255,23 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
                 />
               </Stack></Box>
               
+            </Stack>
+            <Stack spacing={0} direction="row" sx={{ marginTop: '50px', marginLeft: '200px', marginRight: '200px' }}>
+                <Button variant="contained" onClick={modifuser} sx={{ '&:hover': {
+                    color: 'white',
+                    backgroundColor: '#1a1a1a',
+                }, color: 'black', width:'100%',marginRight:'50px', marginLeft:'50px', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+                Enregistrer
+                </Button>
+
+                <Button variant="contained" onClick={logout} sx={{ '&:hover': {
+                    color: 'white',
+                    backgroundColor: '#1a1a1a',
+                }, color: 'white', width:'100%', marginRight:'50px', marginLeft:'50px', backgroundColor: '#960603', fontFamily: gotham}}>
+                Se déconnecter
+                </Button>
+
+            </Stack>
             </Stack>
           ) : (
             <CircularProgress />
