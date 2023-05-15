@@ -55,6 +55,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchView({user, setUser, isConnected, setIsConnected}) {
 
   const [searchValue,setSearchValue] = useState('');
+  const [results,setResults] = useState([]);
+  const [albums, setAlbums] = useState([]);
+  const [artists, setArtists] = useState([]);
   const inputRef = useRef(null);
 
   const handleClearSearch = () => {
@@ -90,83 +93,37 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
     },
   }));
 
-  const [results, setResults] = useState([]);
-
   const handleSearch = async (search) => {
-    try{
-    const url = `https://api.deezer.com/search/${selectedButton}?q=${search}`;
-    const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
-    const data = await response.json();
-    setResults(data.contents); // stocke les résultats dans le state results
-   
-    const section = document.querySelector(".resultat");
-    section.innerHTML = "";
-
-    if (results !== null && search !== '' && results[2] !== 'e'){
-      if (selectedButton === 'album'){
-        genereralbums(results);
-      }else{
-        genererartists(results);
+    try {
+      if (search === '') {
+        setResults([]);
+        setAlbums([]);
+        setArtists([]);
+        return;
       }
-    }
-  }catch{
-
-  }
-    
-
-    }
   
-
-function genereralbums(results) {
-
-  const albums = JSON.parse(results);
-
-	for (let i = 0; i < albums['data'].length; i++) {
-
-		
-		// Récupération de l'élément du DOM qui accueillera les fiches
-		const sectionAlbums = document.querySelector(".resultat");
-		// Création d’une balise dédiée à un album
-		const albumElement = document.createElement("album");
-		albumElement.dataset.id = albums['data'][i].id;
-		// Création des balises 
-    const lienElement = document.createElement("a");
-    lienElement.href = "/album/" + albums['data'][i].id;
-		const imageElement = document.createElement("img");
-		imageElement.src = albums['data'][i].cover_medium;
-
-		// On rattache la balise article a la section Fiches
-		sectionAlbums.appendChild(albumElement);
-		albumElement.appendChild(lienElement);
-    lienElement.appendChild(imageElement);
-	}
-
-}
-
-function genererartists(results) {
-  const artists = JSON.parse(results);
-  for (let i = 0; i < artists['data'].length; i++) {
-
-    const sectionArtists = document.querySelector(".resultat");
-    // Création d’une balise dédiée à un album
-    const artistElement = document.createElement("artist");
-    artistElement.dataset.id = artists['data'][i].id;
-    // Création des balises 
-    const lienElement = document.createElement("a");
-    lienElement.href = "/artist/" + artists['data'][i].id;
-    const imageElement = document.createElement("img");
-    imageElement.src = artists['data'][i].picture_medium;
-    const nomElement = document.createElement("h2");
-    nomElement.innerText = artists['data'][i].name;
-
-    // On rattache la balise article a la section Fiches
-    sectionArtists.appendChild(artistElement);
-    artistElement.appendChild(lienElement); // ajouter le lien comme enfant de la balise artiste
-    lienElement.appendChild(imageElement); // ajouter l'image comme enfant de la balise lien
-    artistElement.appendChild(nomElement);
-  }
-}
-
+      const url = `https://api.deezer.com/search/${selectedButton}?q=${search}`;
+      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+      const data = await response.json();
+      const resultats = JSON.parse(data.contents);
+      setResults(resultats);
+  
+      const section = document.querySelector(".resultat");
+      section.innerHTML = "";
+  
+      if (selectedButton === 'album') {
+        const albumRes = resultats.data;
+        setAlbums(albumRes);
+        console.log(albumRes);
+      } else {
+        const artistRes = resultats.data;
+        setArtists(artistRes);
+        console.log(artistRes);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="searchView">
@@ -201,6 +158,7 @@ function genererartists(results) {
         </div>
 
         <div className="resultat">
+          
         </div>
         
       </Stack>

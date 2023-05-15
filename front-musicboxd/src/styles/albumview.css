@@ -1,0 +1,23 @@
+@font-face {
+	font-family: 'GothamLight';
+	src: url('../font/GothamLight.ttf')
+}
+
+@font-face {
+	font-family: 'GothamBold';
+	src: url('../font/GothamBold.ttf')
+}
+
+.albumView{
+    position: fixed;
+    font-family: 'GothamLight';
+    top: 0;
+    right: 0;
+    left: 225px;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow: auto;
+    background-color: #1a1a1a;
+    color: white;
+}
