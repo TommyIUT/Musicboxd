@@ -43,7 +43,7 @@ export default function UserView({ user, setUser, isConnected, setIsConnected}) 
     <div className="userView">
       <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
       {userData ? (
-        <Stack spacing={3} direction="column">
+        <Stack spacing={3} direction="column" sx={{marginLeft:'-30px'}}>
         <Stack spacing={1} direction="row">
         <Stack spacing={3} direction="column">
         <Link to={userData[4]} target="_blank">
