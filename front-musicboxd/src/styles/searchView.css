@@ -36,7 +36,7 @@
 	grid-template-columns: repeat(4, 300px);;
 }
 
-.resultat artist {
+.artist {
 	border: 1px solid white;
 	padding: 4px;
     color: white;
@@ -50,21 +50,21 @@
     max-width: 250px;
 }
 
-.resultat artist h2{
+.artist h2{
     font-family: 'GothamLight';
     align-self: center;
     margin-top: 7px;
     font-size: 100%;
 }
 
-.resultat artist img{
+.artist img{
     display: block;
 	margin-left: auto;
 	margin-right: auto;
     width: 100%;
 }
 
-.resultat album {
+.album {
 	padding: 4px;
     color: white;
     margin-bottom: 15px;
@@ -73,11 +73,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 275px;
-    width: 275px;
+    height: 100%;
+    width: 100%;
 }
 
-.resultat album img{
+.album img{
     display: block;
 	margin-left: auto;
 	margin-right: auto;

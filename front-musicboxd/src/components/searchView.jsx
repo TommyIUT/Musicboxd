@@ -168,19 +168,19 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
 
         <div className="resultat">
         {albums.map((album) => (
-          <div className="album" key={album.id}>
+          <div className="album">
             <Link to={`/album/${album.id}`}>
-              <img src={album.cover} alt={album.title} />
+              <img src={album.cover_medium} alt={album.title} />
             </Link>
           </div>
         ))}
 
         {artists.map((artist) => (
-          <div className="artist" key={artist.id}>
-            <h2>{artist.name}</h2>
+          <div className="artist" >
             <Link to={`/artist/${artist.id}`}>
               <img src={artist.picture_medium} alt={artist.name} />
             </Link>
+            <h2>{artist.name}</h2>
           </div>
         ))}
         </div>
