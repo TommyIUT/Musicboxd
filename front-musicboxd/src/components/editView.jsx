@@ -162,12 +162,13 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
             
             <Stack direction="column">
                 <ToastContainer />
+            <Link to='/user' style={{ color: 'white' }}>
             <Stack direction="row">
             <Avatar alt={user}
             src={photo}
             sx={{ width: 150, height: 150, marginTop: '30px', marginLeft: '400px'}}/>
             <h1 className='pseudoModif'>{pseudo}</h1>
-            </Stack>
+            </Stack></Link>
             <Stack spacing={0} direction="row" sx={{ marginTop: '50px', marginLeft: '200px', marginRight: '200px' }}>
               <Box
                 sx={{
