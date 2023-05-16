@@ -1,4 +1,4 @@
-import React, {  useState, useRef } from 'react';
+import React, {  useState, useRef, useEffect } from 'react';
 import Sidebar from './sidebar';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
+import {Link} from 'react-router-dom';
 
 import '../styles/searchView.css';
 
@@ -64,14 +65,16 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
     // Code pour effacer le contenu de la recherche
     setSearchValue('');
     inputRef.current.focus();
-    handleSearch('');
+    setAlbums([]);
+    setArtists([]);
   };
 
   const [selectedButton, setSelectedButton] = useState('artist');
 
   const handleButtonClick = (value) => {
-    setSelectedButton(value);
-    handleSearch('');
+    setAlbums([]);
+    setArtists([]);
+    setSelectedButton(value); 
   };
 
   const SearchButtons = styled('div')(({ theme }) => ({
@@ -93,37 +96,42 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
     },
   }));
 
-  const handleSearch = async (search) => {
+  const handleSearch = async () => {
+    console.log('avant')
     try {
-      if (search === '') {
-        setResults([]);
-        setAlbums([]);
-        setArtists([]);
-        return;
-      }
+
+      setResults([]);
+      setAlbums([]);
+      setArtists([]);
   
-      const url = `https://api.deezer.com/search/${selectedButton}?q=${search}`;
+      const url = `https://api.deezer.com/search/${selectedButton}?q=${searchValue}`;
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
       const data = await response.json();
-      const resultats = JSON.parse(data.contents);
-      setResults(resultats);
+      const resultats = JSON.parse(data.contents.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''));
   
       const section = document.querySelector(".resultat");
       section.innerHTML = "";
-  
-      if (selectedButton === 'album') {
+
+      console.log(resultats.data)
+      
+      if (searchValue === '') {
+        setArtists([])
+        setAlbums([])
+      } else if (selectedButton === 'album') {
         const albumRes = resultats.data;
         setAlbums(albumRes);
-        console.log(albumRes);
+        setArtists([])
+
       } else {
         const artistRes = resultats.data;
         setArtists(artistRes);
-        console.log(artistRes);
+        setAlbums([])
       }
     } catch (error) {
       console.error(error);
     }
   };
+
 
   return (
     <div className="searchView">
@@ -132,19 +140,20 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
         <div className='recherche'>
         <Stack spacing={5} direction="row">
           <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
+            
             <StyledInputBase
               placeholder="Chercher…"
               inputRef={inputRef}
               inputProps={{ 'aria-label': 'search' }}
               value={searchValue}
               onChange={(e) =>{ setSearchValue(e.target.value);
-                handleSearch(e.target.value);
               }}
+              sx={{marginLeft:'-40px'}}
               
             />
+            <IconButton onClick={handleSearch} sx={{ color:"#FFFFFF"}}>
+              <SearchIcon />
+            </IconButton>
              <IconButton onClick={handleClearSearch} sx={{ color:"#FFFFFF"}}>
               <ClearIcon />
             </IconButton>
@@ -158,7 +167,22 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
         </div>
 
         <div className="resultat">
-          
+        {albums.map((album) => (
+          <div className="album" key={album.id}>
+            <Link to={`/album/${album.id}`}>
+              <img src={album.cover} alt={album.title} />
+            </Link>
+          </div>
+        ))}
+
+        {artists.map((artist) => (
+          <div className="artist" key={artist.id}>
+            <h2>{artist.name}</h2>
+            <Link to={`/artist/${artist.id}`}>
+              <img src={artist.picture_medium} alt={artist.name} />
+            </Link>
+          </div>
+        ))}
         </div>
         
       </Stack>

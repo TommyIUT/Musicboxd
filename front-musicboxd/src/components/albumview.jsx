@@ -17,7 +17,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
 
     return(
         <div className="albumView">
-            <Sidebar></Sidebar>
+            <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
             blabla
         </div>
     )
