@@ -97,7 +97,6 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
   }));
 
   const handleSearch = async () => {
-    console.log('avant')
     try {
 
       setResults([]);
@@ -111,8 +110,6 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
   
       const section = document.querySelector(".resultat");
       section.innerHTML = "";
-
-      console.log(resultats.data)
       
       if (searchValue === '') {
         setArtists([])
