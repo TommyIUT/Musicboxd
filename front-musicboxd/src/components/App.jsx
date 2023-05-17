@@ -7,6 +7,7 @@ import InscriptionView from'./inscriptionView.jsx'
 import SearchView from './searchView.jsx';
 import EditView from './editView.jsx';
 import AlbumView from './albumview';
+import ArtistView from './artistView.jsx';
 import {useState} from "react";
 
 
@@ -25,7 +26,7 @@ function App() {
           <Route path='/login' exact element={<ConnexionView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/register' exact element={<InscriptionView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/search' exact element={<SearchView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
-          <Route path='/artist/:id' exact element={<EditView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
+          <Route path='/artist/:id' exact element={<ArtistView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/album/:id' exact element={<AlbumView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/edit' exact element={<EditView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
         </Routes>
