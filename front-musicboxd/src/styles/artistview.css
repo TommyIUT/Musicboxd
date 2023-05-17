@@ -29,3 +29,32 @@
     background-color: #454545;
 }
 
+.artistd{
+    margin-top: 80px;
+    font-size: 25px;
+}
+
+.nomartiste{
+    font-family: 'GothamBold';
+    font-size: 400%;
+    white-space: nowrap;
+    margin-top: -20px;
+}
+
+.icon{
+    width: 20px;
+    color: white;
+}
+
+.linktodeezerartist{
+    color: white;
+    font-size: 25px;
+    margin-left: 500px;
+}
+
+.artistalbums{
+    width: 100%;
+    left: 225px;
+    height: auto;
+    margin-top: 55vh;
+}

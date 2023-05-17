@@ -4,6 +4,7 @@ import {Link, useNavigate, useParams  } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import CircleIcon from '@mui/icons-material/Circle';
+import { ReactComponent as DeezerIcon } from '../assets/deezer.svg'
 
 import '../styles/albumview.css'
 
@@ -50,7 +51,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
             </Stack>
             <Stack spacing={1} direction="row" >
                 <p className='linktoartist'><Link to={'/artist/'+albumData.artist.id} className='linktoartist'>{albumData.artist.name}</Link></p>
-                <p className='linktodeezeralbum'> <a href={albumData.link} target='_blank' className='linktodeezeralbum'>Écouter sur Deezer</a></p>
+                <p className='linktodeezeralbum'> <a href={albumData.link} target='_blank' className='linktodeezeralbum'>Écouter sur Deezer <DeezerIcon className='icon'/></a></p>
             </Stack>
 
             </Stack>
