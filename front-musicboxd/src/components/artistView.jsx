@@ -52,7 +52,6 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
             const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
             const data = await response.json();
             const res  = JSON.parse(data.contents.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''));
-            console.log(res.data)
             setArtistAlbums(res.data)
         } catch {
            // navigate('/login')
