@@ -66,7 +66,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
             </Stack>
 
             </div>):(
-                <CircularProgress />
+                <CircularProgress sx={{marginLeft:'40px'}}/>
             )}
             <div className='review'>
                 

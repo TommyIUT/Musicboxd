@@ -100,7 +100,7 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
                 <Button variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
                     color: 'white',
                     backgroundColor: '#1ED75A',
-                }, width: '40vw', marginLeft:'23vw', marginTop:'10px',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham, fontSize:'25px'}}>
+                }, width: '40vw', marginLeft:'23vw', marginTop:'10px',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham, fontSize:'25px', zIndex: '4'}}>
                 Albums ( {artistData.nb_album} )
                 </Button>
                 <div className='resalbums'> 
