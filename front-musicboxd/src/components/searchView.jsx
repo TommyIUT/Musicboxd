@@ -107,7 +107,7 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
       const data = await response.json();
       const resultats = JSON.parse(data.contents.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''));
-  
+
       const section = document.querySelector(".resultat");
       section.innerHTML = "";
       
@@ -128,6 +128,8 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
       console.error(error);
     }
   };
+
+
 
 
   return (

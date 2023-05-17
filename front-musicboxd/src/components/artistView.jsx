@@ -46,15 +46,17 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
             const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
             const data = await response.json();
             const res  = JSON.parse(data.contents.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''));
-            setArtistAlbums(res)
+            console.log(res.data)
+            setArtistAlbums(res.data)
         } catch {
-            navigate('/login')
+           // navigate('/login')
         }
         }
     
 
     return(
         <div className="artistView">
+            <div className='bandegrise'></div>
             <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
             {artistData ? (
             <div className='artistdata'>
@@ -86,13 +88,23 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
 
             {artistAlbums ? (
             <div className='artistalbums'>
-                <Button variant="contained" sx={{ '&:hover': {
+                <Stack spacing={0} direction="column" sx={{width:'100%'}}>
+                <Button variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
                     color: 'white',
-                    backgroundColor: '#1a1a1a',
-                }, width: '100%',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham}} className='test'>
-                Albums
+                    backgroundColor: '#1ED75A',
+                }, width: '40vw', marginLeft:'23vw', marginTop:'10px',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham, fontSize:'25px'}}>
+                Albums ( {artistData.nb_album} )
                 </Button>
-        
+                <div className='resalbums'> 
+                {artistAlbums.map((album) => (
+                    <div className="album">
+                        <Link to={`/album/${album.id}`}>
+                        <img src={album.cover_medium} alt={album.title} />
+                        </Link>
+                    </div>
+                    ))}
+                </div>
+                </Stack>
             </div>
             ):(
                 <CircularProgress sx={{marginTop:'55vh'}}/>
