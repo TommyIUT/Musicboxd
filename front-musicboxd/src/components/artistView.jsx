@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './sidebar';
-import {Link, useNavigate, useParams  } from 'react-router-dom';
+import {Link, useNavigate, useParams } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Avatar from '@mui/material/Avatar';
@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 import gotham from '../font/GothamBold.ttf';
 import { ReactComponent as DeezerIcon } from '../assets/deezer.svg'
 import AlbumIcon from '@mui/icons-material/Album';
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 import '../styles/artistview.css'
 
@@ -39,6 +41,10 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
     }
     }
 
+    const handleGoBack = () => {
+        navigate(-1);
+      };
+
 
     async function fetchArtistAlbums(id) {
         try{
@@ -58,6 +64,9 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
         <div className="artistView">
             <div className='bandegrise'></div>
             <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+            <IconButton aria-label="delete" size="small" sx={{position:'fixed', margin:'15px'}} onClick={handleGoBack}>
+            <ArrowBackIosIcon sx={{color:'white'}} fontSize="inherit" />
+            </IconButton>
             {artistData ? (
             <div className='artistdata'>
             <Stack spacing={2} direction="row" sx={{marginTop:'15px', marginLeft:'40px'}}>
@@ -86,7 +95,7 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
                 <CircularProgress />
             )}
 
-            {artistAlbums ? (
+            {artistAlbums && artistData ? (
             <div className='artistalbums'>
                 <Stack spacing={0} direction="column" sx={{width:'100%'}}>
                 <Button variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {

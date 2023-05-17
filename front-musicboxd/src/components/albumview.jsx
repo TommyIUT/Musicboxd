@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './sidebar';
-import {Link, useNavigate, useParams  } from 'react-router-dom';
+import {Link, useNavigate, useParams } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import CircleIcon from '@mui/icons-material/Circle';
 import { ReactComponent as DeezerIcon } from '../assets/deezer.svg'
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 import '../styles/albumview.css'
 
@@ -35,9 +37,16 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
     }
     }
 
+    const handleGoBack = () => {
+        navigate(-1);
+      };
+
     return(
         <div className="albumView">
             <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+            <IconButton aria-label="delete" size="small" sx={{position:'fixed', margin:'15px', zIndex:'4'}} onClick={handleGoBack}>
+            <ArrowBackIosIcon sx={{color:'white'}} fontSize="15px" />
+            </IconButton>
             {albumData ? (
             <div className='albumdata'>
             <Stack spacing={0} direction="column" sx={{marginLeft:'-30px'}}>
