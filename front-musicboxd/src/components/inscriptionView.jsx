@@ -15,6 +15,8 @@ import '../styles/InscriptionView.css';
 export default function InscriptionView({ user, setUser, isConnected, setIsConnected}) {
   const navigate = useNavigate();
     
+  
+
     const bcrypt = require('bcryptjs');
     const [isRegistered, setIsRegistered] = useState(true)
 
@@ -72,6 +74,25 @@ export default function InscriptionView({ user, setUser, isConnected, setIsConne
                         toast.success("Compte créé avec succès");
                         localStorage.setItem("token",parseRes.token)
                         setAuth(true)
+                        setUser(identifiant)
+                        // creation de la premiere activité
+                        const id_user = identifiant;
+                        const date = new Date();
+                        const year = date.getFullYear();
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const hours = String(date.getHours()).padStart(2, '0');
+                        const minutes = String(date.getMinutes()).padStart(2, '0');
+                        const seconds = String(date.getSeconds()).padStart(2, '0');
+                        const activite_date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                        const contenu = 'vous avez créé votre compte !'
+                        const body = {id_user, activite_date, contenu}
+                        const responseact = await fetch(`http://localhost:5000/activite/`, {
+                            method: "POST",
+                            headers: {"Content-Type" : "application/json"},
+                            body: JSON.stringify(body)
+                        })
+                        console.log(responseact)
                         navigate('/user')
                     }
     

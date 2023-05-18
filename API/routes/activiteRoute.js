@@ -14,8 +14,8 @@ router.get("/", async (req, res) => {
 router.get("/:id_user", async (req, res ) => {
   try {
     const {id_user} = req.params
-    const activite = await pool.query('SELECT * FROM activite where id_user = $1 ;', [id_user])
-    return res.status(200).json(activite.rows[0])
+    const activite = await pool.query('SELECT * FROM activite where id_user = $1 ORDER BY activite_date DESC;', [id_user])
+    return res.status(200).json(activite.rows)
   } catch (err) {
     console.log(err.message)
     return res.status(500).send("Erreur serveur")
@@ -23,6 +23,7 @@ router.get("/:id_user", async (req, res ) => {
 })
 
 router.post("/", async (req, res) => {
+  console.log('tentative')
     try {
       const { id_user, activite_date, contenu } = req.body;
       const newActivite = await pool.query(
