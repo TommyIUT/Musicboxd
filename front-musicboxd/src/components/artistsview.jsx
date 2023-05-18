@@ -64,7 +64,7 @@ export default function ArtistsView({ user, setUser, isConnected, setIsConnected
         <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
         {userData ? (
             <div className='useravatar'>
-                <Stack spacing={0} direction="column">
+                <Stack spacing={0} direction="column" sx={{marginLeft:'-50px'}}>
                 <Stack spacing={0} direction="row">
                 <Link to='/user'>
                     <Avatar
