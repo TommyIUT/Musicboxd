@@ -92,7 +92,6 @@ export default function InscriptionView({ user, setUser, isConnected, setIsConne
                             headers: {"Content-Type" : "application/json"},
                             body: JSON.stringify(body)
                         })
-                        console.log(responseact)
                         navigate('/user')
                     }
     

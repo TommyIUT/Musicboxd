@@ -15,7 +15,7 @@ router.get("/:id_user/:id_artist", async (req, res ) => {
   try {
     const {id_user,id_artist} = req.params
     const abonne = await pool.query('SELECT * FROM abonne where id_user = $1 and id_artist = $2;', [id_user,id_artist])
-    return res.status(200).json(abonne.rows[0])
+    return res.status(200).json(abonne.rows)
   } catch (err) {
     console.log(err.message)
     return res.status(500).send("Erreur serveur")
@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
     try {
       const { id_user, id_artist, nom_artiste, photo_artiste } = req.body;
       const newAbonne = await pool.query(
-        "INSERT INTO listenlist (id_user, id_artist, nom_artiste, photo_artiste) VALUES ($1, $2, $3, $4) RETURNING * ;",
+        "INSERT INTO abonne (id_user, id_artist, nom_artiste, photo_artiste) VALUES ($1, $2, $3, $4) RETURNING * ;",
         [id_user, id_artist, nom_artiste, photo_artiste]
       );
       res.status(201).json(newAbonne.rows[0]);

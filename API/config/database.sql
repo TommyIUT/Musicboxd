@@ -18,7 +18,7 @@ CREATE TABLE abonne (
     id_artist VARCHAR(255),
     nom_artiste VARCHAR(255),
     photo_artiste VARCHAR(500),
-    FOREIGN KEY(id_user) REFERENCES userbox(identifiant)
+    FOREIGN KEY(id_user) REFERENCES userbox(identifiant) ON DELETE CASCADE
 );
 
 CREATE TABLE listenlist (
@@ -26,14 +26,14 @@ CREATE TABLE listenlist (
     id_album VARCHAR(255),
     nom_album VARCHAR(255),
     photo VARCHAR(500), -- lien photo album
-    FOREIGN KEY(id_user) REFERENCES userbox(identifiant)
+    FOREIGN KEY(id_user) REFERENCES userbox(identifiant) ON DELETE CASCADE
 );
 
 CREATE TABLE activite (
     id_user VARCHAR(20),
     activite_date timestamp,
     contenu VARCHAR(255),
-    FOREIGN KEY(id_user) REFERENCES userbox(identifiant)
+    FOREIGN KEY(id_user) REFERENCES userbox(identifiant) ON DELETE CASCADE
 );
 
 CREATE TABLE review (
@@ -45,5 +45,5 @@ CREATE TABLE review (
     note Number,
     texte VARCHAR(255),
     
-    FOREIGN KEY(id_user) REFERENCES userbox(identifiant)
+    FOREIGN KEY(id_user) REFERENCES userbox(identifiant) ON DELETE CASCADE
 );

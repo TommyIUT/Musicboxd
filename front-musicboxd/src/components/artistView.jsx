@@ -10,6 +10,7 @@ import { ReactComponent as DeezerIcon } from '../assets/deezer.svg'
 import AlbumIcon from '@mui/icons-material/Album';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { ToastContainer, toast } from 'react-toastify';
 
 import '../styles/artistview.css'
 
@@ -17,6 +18,7 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
 
     const [artistData, setArtistData] = useState(null);
     const [artistAlbums, setArtistAlbums] = useState(null);
+    const [isSubbed, setIsSubbed] = useState(false)
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -26,8 +28,15 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
         } else {
             fetchArtist(id);
             fetchArtistAlbums(id);
+            checkIfSubbed();
         }
-      }, [user, navigate]);
+      }, [user ,navigate]);
+
+    useEffect(() => {
+    if (artistData !== null){
+        checkIfSubbed()
+    }
+    }, [artistData]);
     
     async function fetchArtist(id) {
     try{
@@ -57,7 +66,70 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
            // navigate('/login')
         }
         }
-    
+
+    async function checkIfSubbed() {
+        try {
+            const response = await fetch(`http://localhost:5000/abonne/${user}/${artistData.id}`, {
+                method: "GET",
+                headers: {"Content-Type" : "application/json"},
+            });
+            console.log(response)
+            const data = await response.json();
+        
+            if (data.length > 0) {
+                setIsSubbed(true);
+            } else {
+                setIsSubbed(false);
+            }
+            console.log(isSubbed)
+        } catch (error) {
+            console.error(error);
+            // navigate('/login');
+        }
+        }
+
+    async function SubTo() {
+        try {
+            const id_user = user;
+            const id_artist = artistData.id
+            const nom_artiste = artistData.name
+            const photo_artiste = artistData.picture_medium
+            const body = { id_user, id_artist, nom_artiste, photo_artiste }
+            const response = await fetch(`http://localhost:5000/abonne/`, {
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify(body)
+            });
+            console.log(response)
+        
+            if (response.ok) {
+                setIsSubbed(true);
+                // activité
+                const id_user = user;
+                const date = new Date();
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                const seconds = String(date.getSeconds()).padStart(2, '0');
+                const activite_date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                const contenu = 'Vous vous êtes abonné à ' + artistData.name
+                const body = {id_user, activite_date, contenu}
+                const responseact = await fetch(`http://localhost:5000/activite/`, {
+                    method: "POST",
+                    headers: {"Content-Type" : "application/json"},
+                    body: JSON.stringify(body)
+                })
+              } else {
+                console.log("Erreur lors de l'abonnement.");
+              }
+        } catch (error) {
+            console.error(error);
+            // navigate('/login');
+        }
+        }
+
 
     return(
         <div className="artistView">
@@ -68,6 +140,7 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
             </IconButton>
             {artistData ? (
             <div className='artistdata'>
+            <ToastContainer />
             <Stack spacing={2} direction="row" sx={{marginTop:'15px', marginLeft:'40px'}}>
             <Stack spacing={2} direction="column" >
                 <Link to={artistData.picture_medium} target='_blank'>
@@ -76,7 +149,7 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
                 src={artistData.picture_medium}
                 sx={{ width: 300, height: 300}}
                 /></Link>
-                <Button variant="contained" sx={{ '&:hover': {
+                <Button variant="contained" onClick={SubTo} sx={{ '&:hover': {
                     color: 'white',
                     backgroundColor: '#1a1a1a',
                 }, width: '100%',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham}} className='test'>
