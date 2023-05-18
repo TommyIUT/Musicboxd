@@ -7,6 +7,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import { ReactComponent as DeezerIcon } from '../assets/deezer.svg'
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import '../styles/albumview.css'
 
@@ -41,11 +42,18 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
         navigate(-1);
       };
 
+      const handleGoEnAvant = () => {
+        navigate(+1);
+      };
+
     return(
         <div className="albumView">
             <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
             <IconButton aria-label="delete" size="small" sx={{position:'fixed', margin:'15px', zIndex:'4'}} onClick={handleGoBack}>
             <ArrowBackIosIcon sx={{color:'white'}} fontSize="15px" />
+            </IconButton>
+            <IconButton aria-label="delete" size="small" sx={{position:'fixed',marginLeft:'40px', marginTop:'15px', zIndex:'4'}} onClick={handleGoEnAvant}>
+            <ArrowForwardIosIcon sx={{color:'white'}} fontSize="15px" />
             </IconButton>
             {albumData ? (
             <div className='albumdata'>

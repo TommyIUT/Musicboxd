@@ -11,6 +11,7 @@ import AlbumIcon from '@mui/icons-material/Album';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { ToastContainer, toast } from 'react-toastify';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import '../styles/artistview.css'
 
@@ -171,6 +172,9 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
             <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
             <IconButton aria-label="delete" size="small" sx={{position:'fixed', margin:'15px'}} onClick={handleGoBack}>
             <ArrowBackIosIcon sx={{color:'white'}} fontSize="inherit" />
+            </IconButton>
+            <IconButton aria-label="delete" size="small" sx={{position:'fixed',marginLeft:'40px', marginTop:'15px', zIndex:'4'}} onClick={handleGoEnAvant}>
+            <ArrowForwardIosIcon sx={{color:'white'}} fontSize="15px" />
             </IconButton>
             {artistData ? (
             <div className='artistdata'>
