@@ -23,7 +23,6 @@ router.get("/:id_user", async (req, res ) => {
 })
 
 router.post("/", async (req, res) => {
-  console.log('tentative')
     try {
       const { id_user, activite_date, contenu } = req.body;
       const newActivite = await pool.query(

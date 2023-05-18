@@ -38,10 +38,10 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id_user/:id_artist", async (req, res) => {
 try {
-  const { id_user,id_artiste } = req.params;
+  const { id_user,id_artist } = req.params;
   const deleteAbonne = await pool.query(
-    "DELETE FROM abonne WHERE id_user = $1 AND id_album = $2 RETURNING *;",
-    [id_user,id_artiste]
+    "DELETE FROM abonne WHERE id_user = $1 AND id_artist = $2 RETURNING *;",
+    [id_user,id_artist]
 );
   res.status(201).json(deleteAbonne.rows[0]);
 } catch (err) {
