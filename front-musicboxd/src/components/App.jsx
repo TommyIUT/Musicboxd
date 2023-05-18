@@ -9,6 +9,7 @@ import EditView from './editView.jsx';
 import AlbumView from './albumview';
 import ArtistView from './artistView.jsx';
 import {useState} from "react";
+import ArtistsView from './artistsview.jsx';
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
           <Route path='/search' exact element={<SearchView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/artist/:id' exact element={<ArtistView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/album/:id' exact element={<AlbumView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
+          <Route path='/artists' exact element={<ArtistsView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
+          
           <Route path='/edit' exact element={<EditView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
         </Routes>
       </Router>

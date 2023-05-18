@@ -22,6 +22,17 @@ router.get("/:id_user/:id_artist", async (req, res ) => {
   }
 })
 
+router.get("/:id_user", async (req, res ) => {
+  try {
+    const {id_user} = req.params
+    const abonne = await pool.query('SELECT * FROM abonne where id_user = $1;', [id_user])
+    return res.status(200).json(abonne.rows)
+  } catch (err) {
+    console.log(err.message)
+    return res.status(500).send("Erreur serveur")
+  }
+})
+
 router.post("/", async (req, res) => {
     try {
       const { id_user, id_artist, nom_artiste, photo_artiste } = req.body;
