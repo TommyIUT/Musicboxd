@@ -165,6 +165,10 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
             }
             }
 
+            const handleGoEnAvant = () => {
+                navigate(+1);
+              };
+
 
     return(
         <div className="artistView">
