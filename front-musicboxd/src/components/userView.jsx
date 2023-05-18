@@ -6,6 +6,8 @@ import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import gotham from '../font/GothamBold.ttf'
 import Button from '@mui/material/Button';
+import AlbumIcon from '@mui/icons-material/Album';
+import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 
 import '../styles/userview.css'
 
@@ -70,14 +72,14 @@ export default function UserView({ user, setUser, isConnected, setIsConnected}) 
         <p className='bibliothequeUser'>Bibliothèque</p>
         <Stack spacing={0} direction="row">
         <Link to="/albums">
-        <Button href="/login" variant="contained" sx={{ '&:hover': {
+        <Button href="/login" variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
           }, marginTop:'20px',marginLeft:'200px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
           Albums
         </Button></Link>
         <Link to="/artists">
-        <Button href="/login" variant="contained" sx={{ '&:hover': {
+        <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
           }, marginTop:'20px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
