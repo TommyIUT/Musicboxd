@@ -15,7 +15,7 @@ router.get("/:id_user/:id_album", async (req, res ) => {
   try {
     const {id_user,id_album} = req.params
     const listenlist = await pool.query('SELECT * FROM listenlist where id_user = $1 and id_album = $2;', [id_user,id_album])
-    return res.status(200).json(listenlist.rows[0])
+    return res.status(200).json(listenlist.rows)
   } catch (err) {
     console.log(err.message)
     return res.status(500).send("Erreur serveur")

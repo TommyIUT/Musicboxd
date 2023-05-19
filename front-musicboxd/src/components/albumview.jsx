@@ -14,6 +14,7 @@ import '../styles/albumview.css'
 export default function AlbumView({ user, setUser, isConnected, setIsConnected}) {
 
     const [albumData, setAlbumData] = useState(null);
+    const [listenList, setListenList] = useState(null);
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -37,6 +38,18 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
         navigate('/login')
     }
     }
+
+    async function fetchAlbum(id) {
+      try{
+          const response = await fetch(`http://localhost:5000/abonne/${user}/${albumData.id}`);
+          const data = await response.json();
+          const res  = JSON.parse(data.contents.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''));
+          // console.log(res.artist.id)
+          setAlbumData(res)
+      } catch {
+          navigate('/login')
+      }
+      }
 
     const handleGoBack = () => {
         navigate(-1);
