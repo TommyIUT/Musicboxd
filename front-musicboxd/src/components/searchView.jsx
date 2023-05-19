@@ -8,6 +8,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import '../styles/searchView.css';
 
@@ -57,6 +58,7 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
 
   const [searchValue,setSearchValue] = useState('');
   const [results,setResults] = useState([]);
+  const [isSearching,SetIsSearching] = useState(false);
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
   const inputRef = useRef(null);
@@ -102,6 +104,7 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
       setResults([]);
       setAlbums([]);
       setArtists([]);
+      SetIsSearching(true);
   
       const url = `https://api.deezer.com/search/${selectedButton}?q=${searchValue}`;
       const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
@@ -114,15 +117,17 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
       if (searchValue === '') {
         setArtists([])
         setAlbums([])
+        SetIsSearching(false);
       } else if (selectedButton === 'album') {
         const albumRes = resultats.data;
         setAlbums(albumRes);
         setArtists([])
-
+        SetIsSearching(false);
       } else {
         const artistRes = resultats.data;
         setArtists(artistRes);
         setAlbums([])
+        SetIsSearching(false);
       }
     } catch (error) {
       console.error(error);
@@ -163,25 +168,29 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
           <SearchButton variant={selectedButton === 'artist' ? 'contained' : 'outlined' } onClick={() => handleButtonClick('artist')}>artiste </SearchButton>
           </SearchButtons>
           </Stack>
+          {isSearching ? (<CircularProgress />):null}
         </div>
 
         <div className="resultat">
-        {albums.map((album) => (
-          <div className="album">
-            <Link to={`/album/${album.id}`}>
-              <img src={album.cover_medium} alt={album.title} />
-            </Link>
-          </div>
-        ))}
-
-        {artists.map((artist) => (
-          <div className="artist" >
-            <Link to={`/artist/${artist.id}`}>
-              <img src={artist.picture_medium} alt={artist.name} />
-            </Link>
-            <h2>{artist.name}</h2>
-          </div>
-        ))}
+          
+            {albums.map((album) => (
+              <div className="album">
+                <Link to={`/album/${album.id}`}>
+                  <img src={album.cover_medium} alt={album.title} />
+                </Link>
+              </div>
+            ))}
+    
+            {artists.map((artist) => (
+              <div className="artist" >
+                <Link to={`/artist/${artist.id}`}>
+                  <img src={artist.picture_medium} alt={artist.name} />
+                </Link>
+                <h2>{artist.name}</h2>
+              </div>
+            ))}
+          
+        
         </div>
         
       </Stack>
