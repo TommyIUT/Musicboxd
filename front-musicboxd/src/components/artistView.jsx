@@ -135,7 +135,6 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
                     method: "DELETE",
                     headers: {"Content-Type" : "application/json"}
                 });
-                console.log(response)
             
                 if (response.ok) {
                     setIsSubbed(false);
