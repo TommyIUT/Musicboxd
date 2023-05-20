@@ -50,7 +50,7 @@ export default function Sidebar({user, setUser, isConnected, setIsConnected}) {
           Bibliothèque
         </Button></Link>
 
-        <Link to="/">
+        <Link to="/listenlist">
         <Button href="/" variant="contained" startIcon={<WatchLaterIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
