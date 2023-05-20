@@ -23,6 +23,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
           navigate('/login')
         } else {
           fetchAlbum(id);
+          fetchListenList(id);
         }
       }, [user, navigate]);
     
@@ -39,13 +40,19 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
     }
     }
 
-    async function fetchAlbum(id) {
+    async function fetchListenList(id) {
       try{
-          const response = await fetch(`http://localhost:5000/abonne/${user}/${albumData.id}`);
-          const data = await response.json();
-          const res  = JSON.parse(data.contents.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''));
-          // console.log(res.artist.id)
-          setAlbumData(res)
+          const response = await fetch(`http://localhost:5000/abonne/${user}/${id}`, {
+            method: "GET",
+            headers: {"Content-Type" : "application/json"},
+        });
+        const data = await response.json();
+        
+        if (data.length > 0) {
+          setListenList(true);
+        } else {
+          setListenList(false);
+        }
       } catch {
           navigate('/login')
       }
@@ -89,9 +96,13 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
             </div>):(
                 <CircularProgress sx={{marginLeft:'75px'}}/>
             )}
-            <div className='review'>
-                
+            <Stack spacing={0} direction="row" >
+            <div className='listenlist'>   
             </div>
+            <div className='review'>
+
+            </div>
+            </Stack>
         </div>
     )
 
