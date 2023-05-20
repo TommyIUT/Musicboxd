@@ -11,9 +11,10 @@ import AlbumIcon from '@mui/icons-material/Album';
 
 import '../styles/artistsview.css'
 
-export default function ListenlistView({ user, setUser, isConnected, setIsConnected}){
+export default function ArtistsView({ user, setUser, isConnected, setIsConnected}){
     const [userData, setUserData] = useState(null);
     const [albums, setAlbums] = useState(null)
+    const [nb, setNb] = useState(0)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -52,12 +53,12 @@ export default function ListenlistView({ user, setUser, isConnected, setIsConnec
             },
             });
             const data = await response.json()
+            setNb(data.length)
             setAlbums(data)
-            console.log(albums)
         } catch {
             navigate('/login')
         }
-    }
+        }
     
 
     return(
@@ -75,39 +76,29 @@ export default function ListenlistView({ user, setUser, isConnected, setIsConnec
                     /></Link>
                 <h1 className='pseudo'>{userData[0]}</h1>
                 </Stack>
-                <Stack spacing={0} direction="row">
-                    <Link to="/albums">
-                    <Button href="/login" variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
-                        color: 'white',
-                        backgroundColor: '#1a1a1a',
-                    }, marginTop:'20px',marginLeft:'200px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
-                    Albums
-                    </Button></Link>
-                    <Link to="/artists">
-                    <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
-                        color: 'white',
-                        backgroundColor: '#1a1a1a',
-                    }, marginTop:'20px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
-                    Artistes
-                    </Button></Link>
-                    </Stack>
+                <Button variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
+                    color: 'white',
+                    backgroundColor: '#1ED75A',
+                }, width: '40vw', marginLeft:'390px', marginTop:'10px',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham, fontSize:'25px', zIndex: '4'}}>
+                ListenList ( {nb} )
+                </Button>
                 </Stack>
             </div>
         ):(
-            <CircularProgress />
+            <CircularProgress/>
         )}
         {albums ? (
             <div className='userartists'>
                 {albums.map((album) => (
                 <div className="album" >
-                    <Link to={`/album/${album.id_artist}`}>
+                    <Link to={`/album/${album.id_album}`}>
                     <img src={album.photo} alt={album.nom_album} />
                     </Link>
                 </div>
                 ))}
             </div>
         ):(
-            <CircularProgress />
+            <CircularProgress/>
         )}    
         </div>
     )

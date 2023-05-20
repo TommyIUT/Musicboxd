@@ -44,7 +44,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
 
     async function fetchListenList(id) {
       try{
-          const response = await fetch(`http://localhost:5000/abonne/${user}/${id}`, {
+          const response = await fetch(`http://localhost:5000/listenlist/${user}/${id}`, {
             method: "GET",
             headers: {"Content-Type" : "application/json"},
         });
