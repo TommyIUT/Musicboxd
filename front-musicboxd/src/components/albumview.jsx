@@ -8,6 +8,8 @@ import { ReactComponent as DeezerIcon } from '../assets/deezer.svg'
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import WatchLaterOutlinedIcon from '@mui/icons-material/WatchLaterOutlined';
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
 
 import '../styles/albumview.css'
 
@@ -58,6 +60,48 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
       }
       }
 
+      async function addToListenList() {
+        try {
+            const id_user = user;
+            const id_album = albumData.id
+            const nom_album = albumData.title
+            const photo = albumData.cover_medium
+            const body = { id_user, id_album, nom_album, photo }
+            const response = await fetch(`http://localhost:5000/listenlist/`, {
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify(body)
+            });
+            console.log(response)
+        
+            if (response.ok) {
+                setListenList(true);
+                // activité
+                const id_user = user;
+                const date = new Date();
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                const seconds = String(date.getSeconds()).padStart(2, '0');
+                const activite_date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                const contenu = 'Vous avez ajouté' + albumData.title + ' à votre listenlist'
+                const body = {id_user, activite_date, contenu}
+                const responseact = await fetch(`http://localhost:5000/activite/`, {
+                    method: "POST",
+                    headers: {"Content-Type" : "application/json"},
+                    body: JSON.stringify(body)
+                })
+              } else {
+                console.log("Erreur lors de l'ajout.");
+              }
+        } catch (error) {
+            console.error(error);
+            // navigate('/login');
+        }
+        }
+
     const handleGoBack = () => {
         navigate(-1);
       };
@@ -97,7 +141,22 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
                 <CircularProgress sx={{marginLeft:'75px'}}/>
             )}
             <Stack spacing={0} direction="row" >
-            <div className='listenlist'>   
+            <div className='listenlist'>
+              {listenList && albumData ? (
+                <div className='llistenlist'>
+                <h1>Retirer de la Listenlist</h1>
+                <IconButton aria-label="delete" sx={{width:'100px', height:'100px'}} onClick={handleGoEnAvant}>
+                <WatchLaterIcon sx={{color:'#1ED75A', width:'100%', height:'100%'}} fontSize="100%" />
+                </IconButton>
+                </div>
+              ):(
+                <div className='llistenlist'>
+                <h3>Ajouter à la Listenlist</h3>
+                <IconButton aria-label="delete" sx={{width:'100px', height:'100px'}} onClick={addToListenList}>
+                <WatchLaterOutlinedIcon sx={{color:'#1ED75A', width:'100%', height:'100%'}} fontSize="100%" />
+                </IconButton>
+                </div>
+              )}
             </div>
             <div className='review'>
 
