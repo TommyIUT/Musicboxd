@@ -38,7 +38,13 @@
 .voiractivite{
     color: white;
     font-size: 25px;
-    margin-left: 600px;
+    margin-left: 65vw;
+    text-decoration: underline;
+}
+
+.liennormal{
+    color: white;
+    text-decoration: underline;
 }
 
 .pronomUser{

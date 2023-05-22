@@ -65,7 +65,7 @@ export default function UserView({ user, setUser, isConnected, setIsConnected}) 
         <Stack spacing={0} direction="column">
         <h1 className='pseudo'>{userData[0]}</h1>
         <p className='idUser'>@{user}</p>
-        <p className='pronomUser'>{userData[2]}<span className='espace'></span><Link to= {`https://www.google.com/maps/place/${userData[3]}`} target="_blank">{userData[3]}</Link></p>
+        <p className='pronomUser'>{userData[2]}<span className='espace'></span><Link className='liennormal' to= {`https://www.google.com/maps/place/${userData[3]}`} target="_blank">{userData[3]}</Link></p>
         <p className='bioUser'>{userData[1]}</p>
         </Stack>
         </Stack>
@@ -86,7 +86,7 @@ export default function UserView({ user, setUser, isConnected, setIsConnected}) 
           Artistes
         </Button></Link>
         </Stack>
-        <p className='voiractivite'><Link sx={{color:'white'}} to='/activite'>Voir l'activité...</Link></p>
+        <p ><Link className='voiractivite' to='/activite'>Voir l'activité...</Link></p>
         </Stack>
       ) : (
         <CircularProgress />
