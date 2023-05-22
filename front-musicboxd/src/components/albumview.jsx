@@ -86,7 +86,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
                 const minutes = String(date.getMinutes()).padStart(2, '0');
                 const seconds = String(date.getSeconds()).padStart(2, '0');
                 const activite_date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-                const contenu = 'Vous avez ajouté' + albumData.title + ' à votre listenlist'
+                const contenu = 'Vous avez ajouté ' + albumData.title + ' à votre listenlist'
                 const body = {id_user, activite_date, contenu}
                 const responseact = await fetch(`http://localhost:5000/activite/`, {
                     method: "POST",
@@ -121,7 +121,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
                 const minutes = String(date.getMinutes()).padStart(2, '0');
                 const seconds = String(date.getSeconds()).padStart(2, '0');
                 const activite_date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-                const contenu = 'Vous avez retiré' + albumData.title + ' de votre listenlist'
+                const contenu = 'Vous avez retiré ' + albumData.title + ' de votre listenlist'
                 const body = {id_user, activite_date, contenu}
                 const responseact = await fetch(`http://localhost:5000/activite/`, {
                     method: "POST",

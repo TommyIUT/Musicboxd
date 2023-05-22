@@ -86,6 +86,7 @@ export default function UserView({ user, setUser, isConnected, setIsConnected}) 
           Artistes
         </Button></Link>
         </Stack>
+        <p className='voiractivite'><Link sx={{color:'white'}} to='/activite'>Voir l'activité...</Link></p>
         </Stack>
       ) : (
         <CircularProgress />

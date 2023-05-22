@@ -11,6 +11,7 @@ import ArtistView from './artistView.jsx';
 import {useState} from "react";
 import ArtistsView from './artistsview.jsx';
 import ListenlistView from './listenlistView.jsx';
+import ActiviteView from './activiteView';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path='/artist/:id' exact element={<ArtistView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/album/:id' exact element={<AlbumView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/artists' exact element={<ArtistsView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
+          <Route path='/activite' exact element={<ActiviteView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/listenlist' exact element={<ListenlistView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/edit' exact element={<EditView user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
         </Routes>

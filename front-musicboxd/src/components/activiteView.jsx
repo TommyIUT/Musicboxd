@@ -9,11 +9,11 @@ import gotham from '../font/GothamBold.ttf';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import AlbumIcon from '@mui/icons-material/Album';
 
-import '../styles/artistsview.css'
+import '../styles/activiteview.css'
 
 export default function ArtistsView({ user, setUser, isConnected, setIsConnected}){
     const [userData, setUserData] = useState(null);
-    const [artists, setArtists] = useState(null)
+    const [activites, setActivites] = useState(null)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function ArtistsView({ user, setUser, isConnected, setIsConnected
           navigate('/login')
         } else {
           fetchUser(user);
-          fetchArtists(user);
+          fetchActivites(user);
         }
       }, [user, navigate]);
 
@@ -42,9 +42,9 @@ export default function ArtistsView({ user, setUser, isConnected, setIsConnected
     }
     }
 
-    async function fetchArtists(id) {
+    async function fetchActivites(id) {
         try{
-            const url = `http://localhost:5000/abonne/${id}`;
+            const url = `http://localhost:5000/activite/${id}`;
             const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -52,17 +52,18 @@ export default function ArtistsView({ user, setUser, isConnected, setIsConnected
             },
             });
             const data = await response.json()
-            setArtists(data)
+            console.log(data)
+            setActivites(data)
         } catch {
             navigate('/login')
         }
         }
-    
 
-    return(
-        <div className='activiteview'>
-        <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
-        {userData ? (
+
+        return(
+            <div className='activiteview'>
+            <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+            {userData ? (
             <div className='useravatar'>
                 <Stack spacing={0} direction="column" sx={{marginLeft:'-50px'}}>
                 <Stack spacing={0} direction="row">
@@ -95,24 +96,16 @@ export default function ArtistsView({ user, setUser, isConnected, setIsConnected
         ):(
             <CircularProgress />
         )}
-        {artists ? (
-            <div className='userartists'>
-                {artists.map((artist) => (
-                <div className="artist" >
-                    <Link to={`/artist/${artist.id_artist}`}>
-                    <img src={artist.photo_artiste} alt={artist.nom_artiste} />
-                    </Link>
-                    <h2>{artist.nom_artiste}</h2>
-                </div>
-                ))}
+
+
+
+
+
             </div>
-        ):(
-            <CircularProgress />
-        )}    
-        </div>
-    )
-
-
+        
+        
+        );
 
 
 }
+

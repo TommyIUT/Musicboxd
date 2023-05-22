@@ -35,6 +35,12 @@
     color: #1ED75A;
 }
 
+.voiractivite{
+    color: white;
+    font-size: 25px;
+    margin-left: 600px;
+}
+
 .pronomUser{
     margin-left: 20px;
     font-size: 4vh;
