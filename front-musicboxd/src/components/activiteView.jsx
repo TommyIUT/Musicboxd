@@ -75,27 +75,33 @@ export default function ArtistsView({ user, setUser, isConnected, setIsConnected
                     /></Link>
                 <h1 className='pseudo'>{userData[0]}</h1>
                 </Stack>
-                <Stack spacing={0} direction="row">
-                    <Link to="/albums">
-                    <Button href="/login" variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
-                        color: 'white',
-                        backgroundColor: '#1a1a1a',
-                    }, marginTop:'20px',marginLeft:'200px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
-                    Albums
-                    </Button></Link>
-                    <Link to="/artists">
-                    <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
-                        color: 'white',
-                        backgroundColor: '#1a1a1a',
-                    }, marginTop:'20px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
-                    Artistes
-                    </Button></Link>
-                    </Stack>
+                <Button variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
+                    color: 'white',
+                    backgroundColor: '#1ED75A',
+                }, width: '40vw', marginLeft:'390px', marginTop:'10px',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham, fontSize:'25px', zIndex: '4'}}>
+                Activité
+                </Button>
                 </Stack>
             </div>
         ):(
             <CircularProgress />
         )}
+        <Stack spacing={0} direction="column" sx={{marginLeft:'-50px'}}>
+        {activites ? (
+            <div className='activites'>
+                {activites.map((artist) => (
+                <div className="activite" >
+                    <Link to={`/artist/${artist.id_artist}`}>
+                    <img src={artist.photo_artiste} alt={artist.nom_artiste} />
+                    </Link>
+                    <h2>{artist.nom_artiste}</h2>
+                </div>
+                ))}
+            </div>
+        ):(
+            <CircularProgress />
+        )}
+        </Stack>
 
 
 
