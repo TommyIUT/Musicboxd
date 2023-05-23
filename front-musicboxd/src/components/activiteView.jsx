@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './sidebar';
-import {Link, useNavigate, useParams } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import gotham from '../font/GothamBold.ttf';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
-import AlbumIcon from '@mui/icons-material/Album';
 
 import '../styles/activiteview.css'
 
