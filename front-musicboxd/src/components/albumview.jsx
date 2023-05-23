@@ -17,6 +17,9 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
 
     const [albumData, setAlbumData] = useState(null);
     const [listenList, setListenList] = useState(null);
+    const [isReviewing, setIsReviwing] = useState(false);
+    const [hasReview, setHasReview] = useState(false);
+    const [reviewdata,setReviewData] = useState(null);
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -26,6 +29,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
         } else {
           fetchAlbum(id);
           fetchListenList(id);
+          fetchReview(id);
         }
       }, [user, navigate]);
     
@@ -58,6 +62,33 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
       } catch {
           navigate('/login')
       }
+      }
+
+      async function fetchReview(id) {
+        try{
+            const response = await fetch(`http://localhost:5000/review/${user}/${id}`, {
+              method: "GET",
+              headers: {"Content-Type" : "application/json"},
+          });
+          const data = await response.json();
+          
+          if (data.length > 0) {
+            setHasReview(true);
+            setReviewData(data);
+          } else {
+            setHasReview(false);
+          }
+        } catch {
+            navigate('/login')
+        }
+        }
+
+      function add_review(){
+        setIsReviwing(true);
+      }
+
+      function annuler_review(){
+        setIsReviwing(false);
       }
 
       async function addToListenList() {
@@ -194,6 +225,14 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
               )}
             </div>
             <div className='review'>
+              {hasReview && reviewdata ? (
+                <div></div>
+
+              ):(
+                <div></div>
+
+              )}
+
 
             </div>
             </Stack>
