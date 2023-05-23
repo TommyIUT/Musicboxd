@@ -79,7 +79,7 @@ export default function ArtistsView({ user, setUser, isConnected, setIsConnected
                     color: 'white',
                     backgroundColor: '#1ED75A',
                 }, width: '40vw', marginLeft:'390px', marginTop:'10px',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham, fontSize:'25px', zIndex: '4'}}>
-                Activité
+                Votre activité
                 </Button>
                 </Stack>
             </div>
@@ -89,12 +89,9 @@ export default function ArtistsView({ user, setUser, isConnected, setIsConnected
         <Stack spacing={0} direction="column" sx={{marginLeft:'-50px'}}>
         {activites ? (
             <div className='activites'>
-                {activites.map((artist) => (
+                {activites.map((activite) => (
                 <div className="activite" >
-                    <Link to={`/artist/${artist.id_artist}`}>
-                    <img src={artist.photo_artiste} alt={artist.nom_artiste} />
-                    </Link>
-                    <h2>{artist.nom_artiste}</h2>
+                    <p>{activite.contenu}</p>
                 </div>
                 ))}
             </div>

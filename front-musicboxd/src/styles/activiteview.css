@@ -28,3 +28,18 @@
 	margin-top: 0px;
 }
 
+.activites{
+    margin-left: -10vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.activite{
+    margin: 1vh;
+    border-radius: 10%;
+    background-color: #121212;
+    width: 50vw;
+    text-align: center;
+}
