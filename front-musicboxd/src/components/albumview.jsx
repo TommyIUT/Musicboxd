@@ -70,7 +70,9 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
               method: "GET",
               headers: {"Content-Type" : "application/json"},
           });
+          console.log(response)
           const data = await response.json();
+          console.log(data)
           
           if (data.length > 0) {
             setHasReview(true);
@@ -78,8 +80,8 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
           } else {
             setHasReview(false);
           }
-        } catch {
-            navigate('/login')
+        } catch(error) {
+            console.log(error)
         }
         }
 
@@ -226,10 +228,14 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
             </div>
             <div className='review'>
               {hasReview && reviewdata ? (
-                <div></div>
+                <div className='rreview'>
+                  une review
+                </div>
 
               ):(
-                <div></div>
+                <div className='rreview'>
+                  pas de review
+                </div>
 
               )}
 

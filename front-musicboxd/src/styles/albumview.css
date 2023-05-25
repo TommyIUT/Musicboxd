@@ -103,4 +103,7 @@
     height: 100%;
     left: 40vw;
     top: 55vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
