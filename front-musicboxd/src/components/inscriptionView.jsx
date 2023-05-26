@@ -58,7 +58,8 @@ export default function InscriptionView({ isAdmin, setIsAdmin,user, setUser, isC
              toast.error('Ce mail est déjà utilisé');
             }
               try {
-                
+                if (identifiant.length<=5){toast.error('Saisissez un identifiant de plus de 5 charactères svp');
+               }else{
                   if (data1.length===0 && data2.length===0){
                     const body = {email, hashedPassword, identifiant}
                     const response = await fetch("http://localhost:5000/auth/register", {
@@ -96,7 +97,7 @@ export default function InscriptionView({ isAdmin, setIsAdmin,user, setUser, isC
                     }
     
     
-                  }
+                  }}
                  
               } catch (err) {
                 toast.error("Erreur lors de la création du compte !");
