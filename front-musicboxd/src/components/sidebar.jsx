@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import { ToastContainer } from 'react-toastify';
 import gotham from '../font/GothamBold.ttf'
 import logotxt from '../assets/logo_txt.png'
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import '../styles/sidebar.css';
 
@@ -58,6 +59,14 @@ export default function Sidebar({isAdmin, setIsAdmin,user, setUser, isConnected,
           ListenList
         </Button></Link>
 
+          <Link to='/admin'>
+          <Button href="/" variant="contained" startIcon={<SettingsIcon />} sx={{ '&:hover': {
+            color: 'white',
+            backgroundColor: '#1a1a1a',
+          }, width: '100%', color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}}>
+          Administration
+        </Button>
+          </Link>
         </Stack>
 
         <div className='enbasla'>
