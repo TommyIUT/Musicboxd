@@ -13,6 +13,7 @@ import ArtistsView from './artistsview.jsx';
 import ListenlistView from './listenlistView.jsx';
 import ActiviteView from './activiteView';
 import AlbumsView from './albumsView.jsx';
+import AdminView from './adminView.jsx';
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
           <Route path='/artists' exact element={<ArtistsView isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/activite' exact element={<ActiviteView isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/albums' exact element={<AlbumsView isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
-          
+          <Route path='/admin' exact element={<AdminView isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/listenlist' exact element={<ListenlistView isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
           <Route path='/edit' exact element={<EditView isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>}></Route>
         </Routes>

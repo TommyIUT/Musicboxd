@@ -40,8 +40,6 @@ export default function UserView({ isAdmin, setIsAdmin,user, setUser, isConnecte
       navigate('/login')
     }
   }
-
-  console.log(isAdmin)
   
   return (
     <div className="userView">
