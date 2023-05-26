@@ -20,4 +20,15 @@
     overflow: auto;
     background-color: #1a1a1a;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.txtgestion{
+    text-align: center;
+    width: 85%;
+    font-family: 'GothamBold';
+    font-size: 8vh;
 }

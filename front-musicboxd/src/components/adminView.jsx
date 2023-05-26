@@ -24,10 +24,15 @@ export default function AdminView({ isAdmin, setIsAdmin,user, setUser, isConnect
 
       async function fetchUsers() {
         try{
-            const response = await fetch(`https://api.allorigins.win/get?`);
-            const data = await response.json();
-            const res  = JSON.parse(data.contents.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''));
-            setUsersData(res.data)
+            const url = `http://localhost:5000/userbox/`;
+            const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            });
+            const data = await response.json()
+            setUsersData(data)
         } catch {
            // navigate('/login')
         }
@@ -35,7 +40,17 @@ export default function AdminView({ isAdmin, setIsAdmin,user, setUser, isConnect
 
         return(
             <div className="artistView">
+                {usersData ? (
+                    <Stack spacing={0} direction="column" sx={{width:'85%'}}>
+
+
+                    </Stack>
+                ):(
+                    <CircularProgress/>
+                )}
             <Sidebar isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+            <h1 className='txtgestion'>Gestion des utilisateurs</h1>
+            
 
 
             </div>
