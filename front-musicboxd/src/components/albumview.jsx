@@ -260,6 +260,42 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
               // navigate('/login');
           }
           }
+
+          async function deleteReview() {
+            try {
+                const response = await fetch(`http://localhost:5000/review/${user}/${albumData.id}`, {
+                    method: "DELETE",
+                    headers: {"Content-Type" : "application/json"}
+                });
+            
+                if (response.ok) {
+                    fetchReview(id)
+                    setReview_note(0)
+                    // activité
+                    const id_user = user;
+                    const date = new Date();
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const hours = String(date.getHours()).padStart(2, '0');
+                    const minutes = String(date.getMinutes()).padStart(2, '0');
+                    const seconds = String(date.getSeconds()).padStart(2, '0');
+                    const activite_date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                    const contenu = 'Vous avez retiré ' + albumData.title + ' de vos albums écoutés'
+                    const body = {id_user, activite_date, contenu}
+                    const responseact = await fetch(`http://localhost:5000/activite/`, {
+                        method: "POST",
+                        headers: {"Content-Type" : "application/json"},
+                        body: JSON.stringify(body)
+                    })
+                  } else {
+                    console.log("Erreur lors de l'ajout.");
+                  }
+            } catch (error) {
+                console.error(error);
+                // navigate('/login');
+            }
+            }
       
     const handleGoBack = () => {
         navigate(-1);
@@ -332,7 +368,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
                         sx={{marginLeft:'10vw',marginTop:'5px'}}
                       />
                   <p className='txtreview'>{reviewdata.texte}</p>
-                  <Button variant="contained" onClick={annuler_review} sx={{ '&:hover': {
+                  <Button variant="contained" onClick={deleteReview} sx={{ '&:hover': {
                         color: 'white',
                         backgroundColor: '#1a1a1a',
                     }, width: '10vw',color: 'white',marginLeft:'45vw', backgroundColor: '#454545', fontFamily: gotham}} className='test'>

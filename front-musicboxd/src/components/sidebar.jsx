@@ -7,7 +7,7 @@ import AlbumIcon from '@mui/icons-material/Album';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import Stack from '@mui/material/Stack';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import gotham from '../font/GothamBold.ttf'
 import logotxt from '../assets/logo_txt.png'
 
