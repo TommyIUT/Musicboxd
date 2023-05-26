@@ -85,7 +85,6 @@ export default function EditView({ user, setUser, isConnected, setIsConnected}) 
 
     const handlePronomChange = (event) => {
         setPronom(event.target.value);
-        console.log(pronom)
     };
     
     function logout() {

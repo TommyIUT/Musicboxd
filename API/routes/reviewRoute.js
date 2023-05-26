@@ -24,10 +24,10 @@ router.get("/:id_user/:id_album", async (req, res ) => {
 
 router.post("/", async (req, res) => {
     try {
-      const { id_user, id_album,nom_album, photo, review_date, note } = req.body;
+      const { id_user, id_album, nom_album, photo, note, texte } = req.body;
       const newReview = await pool.query(
-        "INSERT INTO review (id_user, id_album, nom_album, photo, review_date, note, texte) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING * ;",
-        [id_user, id_album,nom_album, photo, review_date, note, texte]
+        "INSERT INTO review (id_user, id_album, nom_album, photo, review_date, note, texte) VALUES ($1, $2, $3, $4, CURRENT_TIMESTAMP, $5, $6) RETURNING * ;",
+        [id_user, id_album,nom_album, photo, note, texte]
       );
       res.status(201).json(newReview.rows[0]);
     } catch (err) {

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Sidebar from './sidebar';
 import {Link, useNavigate, useParams } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 import CircleIcon from '@mui/icons-material/Circle';
 import { ReactComponent as DeezerIcon } from '../assets/deezer.svg'
 import IconButton from '@mui/material/IconButton';
@@ -10,6 +11,10 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import WatchLaterOutlinedIcon from '@mui/icons-material/WatchLaterOutlined';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import TextField from '@mui/material/TextField';
+import gotham from '../font/GothamBold.ttf';
+import { styled } from '@mui/material/styles';
+import Rating from '@mui/material/Rating';
 
 import '../styles/albumview.css'
 
@@ -20,8 +25,53 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
     const [isReviewing, setIsReviwing] = useState(false);
     const [hasReview, setHasReview] = useState(false);
     const [reviewdata,setReviewData] = useState(null);
+    const [review_txt, setReview_txt] = useState('');
+    const [review_note, setReview_note] = useState(0);
     const navigate = useNavigate();
     const { id } = useParams();
+
+    const CssTextField = styled(TextField)({
+      '& label.Mui-focused': {
+        color: '#1ED75A',
+      },
+      '& label': {
+          color: '#1ED75A',
+        },
+      '& .MuiInput-underline:after': {
+        borderBottomColor: '#1ED75A',
+      },
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: '#1ED75A',
+        },
+        '&:hover fieldset': {
+          borderColor: '#1ED75A',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: '#1ED75A',
+        },
+      },
+    });
+
+    const StyledRating = styled(Rating)({
+      '& .MuiRating-iconFilled': {
+        color: '#1ED75A',
+        fontSize: '3rem',
+      },
+      '& .MuiRating-iconHover': {
+        color: '#1ED75A',
+        fontSize: '3rem',
+      },
+      '& .MuiRating-icon': {
+        color: '#1ED75A',
+        fontSize: '3rem',
+      },
+    });
+  
+    function changeReview_txt(){
+      const newreviewtxt = document.getElementById("review_txt").value;
+      setReview_txt(newreviewtxt);
+  }
 
     useEffect(() => {
         if (user === ''){
@@ -70,7 +120,6 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
               method: "GET",
               headers: {"Content-Type" : "application/json"},
           });
-          console.log(response)
           const data = await response.json();
           console.log(data)
           
@@ -91,6 +140,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
 
       function annuler_review(){
         setIsReviwing(false);
+        setReview_note(0)
       }
 
       async function addToListenList() {
@@ -134,6 +184,8 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
             // navigate('/login');
         }
         }
+
+       
     
       async function deleteListenlist() {
         try {
@@ -170,6 +222,52 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
         }
         }
 
+        async function review() {
+          try {
+              const id_user = user;
+              const id_album = albumData.id
+              const nom_album = albumData.title
+              const photo = albumData.cover_medium
+              const note = review_note
+              const texte = document.getElementById("review_txt").value;
+              console.log(texte)
+              const body = { id_user, id_album, nom_album, photo,note,texte }
+              const response = await fetch(`http://localhost:5000/review/`, {
+                  method: "POST",
+                  headers: {"Content-Type" : "application/json"},
+                  body: JSON.stringify(body)
+              });
+              console.log(response)
+          
+              if (response.ok) {
+                  fetchReview(id)
+                  deleteListenlist()
+                  // activité
+                  const id_user = user;
+                  const date = new Date();
+                  const year = date.getFullYear();
+                  const month = String(date.getMonth() + 1).padStart(2, '0');
+                  const day = String(date.getDate()).padStart(2, '0');
+                  const hours = String(date.getHours()).padStart(2, '0');
+                  const minutes = String(date.getMinutes()).padStart(2, '0');
+                  const seconds = String(date.getSeconds()).padStart(2, '0');
+                  const activite_date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                  const contenu = 'Vous avez ajouté ' + albumData.title + ' à vos albums écoutés'
+                  const body = {id_user, activite_date, contenu}
+                  const responseact = await fetch(`http://localhost:5000/activite/`, {
+                      method: "POST",
+                      headers: {"Content-Type" : "application/json"},
+                      body: JSON.stringify(body)
+                  })
+                } else {
+                  console.log("Erreur lors de l'ajout.");
+                }
+          } catch (error) {
+              console.error(error);
+              // navigate('/login');
+          }
+          }
+      
     const handleGoBack = () => {
         navigate(-1);
       };
@@ -177,6 +275,8 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
       const handleGoEnAvant = () => {
         navigate(+1);
       };
+
+      
 
     return(
         <div className="albumView">
@@ -229,12 +329,62 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
             <div className='review'>
               {hasReview && reviewdata ? (
                 <div className='rreview'>
-                  une review
+                  
                 </div>
 
               ):(
                 <div className='rreview'>
-                  pas de review
+                  {isReviewing? (
+                    <div>
+                      <Stack spacing={0} direction="column" sx={{marginTop:'7vh'}}>
+                      <StyledRating
+                        name="customized-color"
+                        defaultValue={review_note}
+                        sx={{marginLeft:'10vw'}}
+                        onChange={(event, newValue) => {
+                          if(newValue===null){setReview_note(0);}else{
+                          setReview_note(newValue);}
+                        }}
+                      />
+                 <CssTextField label="Votre review" id="review_txt"
+                    multiline
+                    maxRows={3}
+                    fullWidth
+                    borderColor='white'
+                    InputProps={{
+                        style: {
+                        color: 'white',
+                        borderColor: '#1ED75A',
+                        },
+                    }}
+                    sx={{width: '75%',marginLeft:'10vw',marginTop:'5px'}}
+                />
+                <Stack spacing={0} direction="row" sx={{marginLeft:'35vw',marginTop:'2.5vh'}}>
+                <Button variant="contained" onClick={annuler_review} sx={{ '&:hover': {
+                        color: 'white',
+                        backgroundColor: '#1a1a1a',
+                    }, width: '9vw',color: 'white', backgroundColor: '#454545', fontFamily: gotham}} className='test'>
+                      Annuler
+                    </Button>
+                    <Button variant="contained" onClick={review} sx={{ '&:hover': {
+                        color: 'white',
+                        backgroundColor: '#1a1a1a',
+                    }, width: '9vw',marginLeft:'2vw',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham}} className='test'>
+                      Enregistrer   
+                    </Button>
+                </Stack>
+                </Stack>
+                    </div>
+                  ) : (
+                    <div>
+                      <Button variant="contained" onClick={add_review} sx={{ '&:hover': {
+                        color: 'white',
+                        backgroundColor: '#1a1a1a',
+                    }, width: '75%',color: 'white', marginLeft:'10vw', backgroundColor: '#1ED75A',marginTop:'10vh', fontFamily: gotham}} className='test'>
+                      Noter cet album
+                    </Button>
+                    </div>
+                  )}
                 </div>
 
               )}

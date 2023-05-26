@@ -69,6 +69,7 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
     inputRef.current.focus();
     setAlbums([]);
     setArtists([]);
+    SetIsSearching(false);
   };
 
   const [selectedButton, setSelectedButton] = useState('artist');
