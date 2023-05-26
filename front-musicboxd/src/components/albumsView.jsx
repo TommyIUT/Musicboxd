@@ -11,7 +11,7 @@ import AlbumIcon from '@mui/icons-material/Album';
 import { styled } from '@mui/material/styles';
 import Rating from '@mui/material/Rating';
 
-import '../styles/artistsview.css'
+import '../styles/albumsview.css'
 
 export default function AlbumsView({ user, setUser, isConnected, setIsConnected}){
     const [userData, setUserData] = useState(null);
