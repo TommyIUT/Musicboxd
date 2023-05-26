@@ -22,6 +22,17 @@ router.get("/:id_user/:id_album", async (req, res ) => {
   }
 })
 
+router.get("/:id_user", async (req, res ) => {
+  try {
+    const {id_user} = req.params
+    const review = await pool.query('SELECT * FROM review where id_user = $1;', [id_user])
+    return res.status(200).json(review.rows)
+  } catch (err) {
+    console.log(err.message)
+    return res.status(500).send("Erreur serveur")
+  }
+})
+
 router.post("/", async (req, res) => {
     try {
       const { id_user, id_album, nom_album, photo, note, texte } = req.body;
