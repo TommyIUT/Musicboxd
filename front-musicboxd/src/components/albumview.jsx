@@ -25,7 +25,6 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
     const [isReviewing, setIsReviwing] = useState(false);
     const [hasReview, setHasReview] = useState(false);
     const [reviewdata,setReviewData] = useState(null);
-    const [review_txt, setReview_txt] = useState('');
     const [review_note, setReview_note] = useState(0);
     const navigate = useNavigate();
     const { id } = useParams();
@@ -67,11 +66,6 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
         fontSize: '3rem',
       },
     });
-  
-    function changeReview_txt(){
-      const newreviewtxt = document.getElementById("review_txt").value;
-      setReview_txt(newreviewtxt);
-  }
 
     useEffect(() => {
         if (user === ''){
@@ -121,11 +115,11 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
               headers: {"Content-Type" : "application/json"},
           });
           const data = await response.json();
-          console.log(data)
           
           if (data.length > 0) {
             setHasReview(true);
-            setReviewData(data);
+            setReviewData(data[0]);
+            setReview_note(data[0].note)
           } else {
             setHasReview(false);
           }
@@ -237,7 +231,6 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
                   headers: {"Content-Type" : "application/json"},
                   body: JSON.stringify(body)
               });
-              console.log(response)
           
               if (response.ok) {
                   fetchReview(id)
@@ -328,8 +321,24 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
             </div>
             <div className='review'>
               {hasReview && reviewdata ? (
+
                 <div className='rreview'>
-                  
+                  <p className='txtreview'>Votre review :</p>
+                  <Stack spacing={0} direction="column">
+                  <StyledRating
+                        name="customized-color"
+                        defaultValue={review_note}
+                        disabled
+                        sx={{marginLeft:'10vw',marginTop:'5px'}}
+                      />
+                  <p className='txtreview'>{reviewdata.texte}</p>
+                  <Button variant="contained" onClick={annuler_review} sx={{ '&:hover': {
+                        color: 'white',
+                        backgroundColor: '#1a1a1a',
+                    }, width: '10vw',color: 'white',marginLeft:'45vw', backgroundColor: '#454545', fontFamily: gotham}} className='test'>
+                      Supprimer
+                    </Button>
+                    </Stack>
                 </div>
 
               ):(
