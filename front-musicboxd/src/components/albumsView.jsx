@@ -8,10 +8,12 @@ import Button from '@mui/material/Button';
 import gotham from '../font/GothamBold.ttf';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import AlbumIcon from '@mui/icons-material/Album';
+import { styled } from '@mui/material/styles';
+import Rating from '@mui/material/Rating';
 
 import '../styles/artistsview.css'
 
-export default function ListenListView({ user, setUser, isConnected, setIsConnected}){
+export default function AlbumsView({ user, setUser, isConnected, setIsConnected}){
     const [userData, setUserData] = useState(null);
     const [albums, setAlbums] = useState(null)
     const [nb, setNb] = useState(0)
@@ -45,7 +47,7 @@ export default function ListenListView({ user, setUser, isConnected, setIsConnec
 
     async function fetchListenList(id) {
         try{
-            const url = `http://localhost:5000/listenlist/${id}`;
+            const url = `http://localhost:5000/review/${id}`;
             const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -59,6 +61,15 @@ export default function ListenListView({ user, setUser, isConnected, setIsConnec
             navigate('/login')
         }
         }
+
+        const StyledRating = styled(Rating)({
+            '& .MuiRating-iconFilled': {
+              color: '#1ED75A',
+            },
+            '& .MuiRating-icon': {
+              color: '#1ED75A',
+            },
+          });
     
 
     return(
@@ -76,12 +87,22 @@ export default function ListenListView({ user, setUser, isConnected, setIsConnec
                     /></Link>
                 <h1 className='pseudo'>{userData[0]}</h1>
                 </Stack>
-                <Button variant="contained" startIcon={<AccountCircleSharpIcon sx={{fontSize:'25px'}}/>} sx={{ '&:hover': {
-                    color: 'white',
-                    backgroundColor: '#1ED75A',
-                }, width: '40vw', marginLeft:'390px', marginTop:'10px',color: 'white', backgroundColor: '#1ED75A', fontFamily: gotham, fontSize:'25px', zIndex: '4'}}>
-                ListenList ( {nb} )
-                </Button>
+                <Stack spacing={0} direction="row">
+                    <Link to="/albums">
+                    <Button href="/login" variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
+                        color: 'white',
+                        backgroundColor: '#1a1a1a',
+                    }, marginTop:'20px',marginLeft:'200px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+                    Albums
+                    </Button></Link>
+                    <Link to="/artists">
+                    <Button href="/login" variant="contained" startIcon={<AccountCircleSharpIcon />} sx={{ '&:hover': {
+                        color: 'white',
+                        backgroundColor: '#1a1a1a',
+                    }, marginTop:'20px', width: '500px',color: 'black', backgroundColor: '#1ED75A', fontFamily: gotham}}>
+                    Artistes
+                    </Button></Link>
+                </Stack>
                 </Stack>
             </div>
         ):(
@@ -94,6 +115,11 @@ export default function ListenListView({ user, setUser, isConnected, setIsConnec
                     <Link to={`/album/${album.id_album}`}>
                     <img src={album.photo} alt={album.nom_album} />
                     </Link>
+                    <StyledRating
+                        name="customized-color"
+                        defaultValue={album.note}
+                        disabled
+                    />
                 </div>
                 ))}
             </div>

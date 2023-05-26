@@ -42,8 +42,8 @@ export default function Sidebar({user, setUser, isConnected, setIsConnected}) {
           Chercher
         </Button></Link>
 
-        <Link to="/artists">
-        <Button href="/artists" variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
+        <Link to="/albums">
+        <Button href="/albums" variant="contained" startIcon={<AlbumIcon />} sx={{ '&:hover': {
             color: 'white',
             backgroundColor: '#1a1a1a',
           }, width: '100%',color: '#1ED75A', backgroundColor: 'black', fontFamily: gotham}} className='test'>
