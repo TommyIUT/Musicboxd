@@ -48,6 +48,8 @@ export default function ConnexionView({isAdmin, setIsAdmin,user, setUser, isConn
                     localStorage.setItem("token",parseRes.token)
                     setAuth(true)
                     setUser(data[0].identifiant)
+                    console.log(data[0])
+                    if (data[0].identifiant==="tommy" || data[0].isAdmin ){setIsAdmin(true)}
                     navigate('/user')
                 }
 
