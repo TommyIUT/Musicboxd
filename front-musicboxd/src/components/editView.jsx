@@ -64,7 +64,7 @@ const CssTextField = styled(TextField)({
 
 
 
-export default function EditView({ user, setUser, isConnected, setIsConnected}) {
+export default function EditView({ isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}) {
     const [userData, setUserData] = useState(null);
     const [pseudo, setPseudo] = useState('');
     const [localisation, setLocalisation] = useState('');

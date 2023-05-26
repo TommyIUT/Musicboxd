@@ -12,7 +12,7 @@ import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import '../styles/userview.css'
 
 
-export default function UserView({ user, setUser, isConnected, setIsConnected}) {
+export default function UserView({ isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}) {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ export default function UserView({ user, setUser, isConnected, setIsConnected}) 
   
   return (
     <div className="userView">
-      <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
+      <Sidebar isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}/>
       {userData ? (
         <Stack spacing={3} direction="column" sx={{marginLeft:'-30px'}}>
         <Stack spacing={1} direction="row">

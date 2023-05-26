@@ -10,10 +10,10 @@ import {Link} from 'react-router-dom';
 
 import '../styles/homeView.css';
 
-export default function HomeView({user, setUser, isConnected, setIsConnected}) {
+export default function HomeView({isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}) {
   return (
     <div className="homeView">
-      <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+      <Sidebar isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
       <Stack spacing={0} direction="column">
 
         <div className='home'>

@@ -11,7 +11,7 @@ import AlbumIcon from '@mui/icons-material/Album';
 
 import '../styles/artistsview.css'
 
-export default function ArtistsView({ user, setUser, isConnected, setIsConnected}){
+export default function ArtistsView({ isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}){
     const [userData, setUserData] = useState(null);
     const [artists, setArtists] = useState(null)
     const navigate = useNavigate();
@@ -61,7 +61,7 @@ export default function ArtistsView({ user, setUser, isConnected, setIsConnected
 
     return(
         <div className='activiteview'>
-        <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+        <Sidebar isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
         {userData ? (
             <div className='useravatar'>
                 <Stack spacing={0} direction="column" sx={{marginLeft:'-50px'}}>

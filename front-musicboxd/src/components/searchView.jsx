@@ -54,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-export default function SearchView({user, setUser, isConnected, setIsConnected}) {
+export default function SearchView({isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}) {
 
   const [searchValue,setSearchValue] = useState('');
   const [results,setResults] = useState([]);
@@ -140,7 +140,7 @@ export default function SearchView({user, setUser, isConnected, setIsConnected})
 
   return (
     <div className="searchView">
-      <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+      <Sidebar isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
       <Stack spacing={0} direction="column">
         <div className='recherche'>
         <Stack spacing={5} direction="row">

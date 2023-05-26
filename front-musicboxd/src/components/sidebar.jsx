@@ -15,7 +15,7 @@ import '../styles/sidebar.css';
 
 
 
-export default function Sidebar({user, setUser, isConnected, setIsConnected}) {
+export default function Sidebar({isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}) {
 
     return (
       

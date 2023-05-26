@@ -18,7 +18,7 @@ import Rating from '@mui/material/Rating';
 
 import '../styles/albumview.css'
 
-export default function AlbumView({ user, setUser, isConnected, setIsConnected}) {
+export default function AlbumView({ isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}) {
 
     const [albumData, setAlbumData] = useState(null);
     const [listenList, setListenList] = useState(null);
@@ -234,7 +234,8 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
           
               if (response.ok) {
                   fetchReview(id)
-                  deleteListenlist()
+                  if (listenList){
+                  deleteListenlist()}
                   // activité
                   const id_user = user;
                   const date = new Date();
@@ -309,7 +310,7 @@ export default function AlbumView({ user, setUser, isConnected, setIsConnected})
 
     return(
         <div className="albumView">
-            <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+            <Sidebar isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
             <IconButton aria-label="delete" size="small" sx={{position:'fixed', margin:'15px', zIndex:'4'}} onClick={handleGoBack}>
             <ArrowBackIosIcon sx={{color:'white'}} fontSize="15px" />
             </IconButton>

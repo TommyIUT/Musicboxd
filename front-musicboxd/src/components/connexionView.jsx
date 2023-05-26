@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import {Link, useNavigate} from 'react-router-dom';
 
 
-export default function ConnexionView({user, setUser, isConnected, setIsConnected}) {
+export default function ConnexionView({isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}) {
     const bcrypt = require('bcryptjs');
     const navigate = useNavigate();
 

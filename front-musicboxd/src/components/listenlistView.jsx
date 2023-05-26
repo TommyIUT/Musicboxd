@@ -11,7 +11,7 @@ import AlbumIcon from '@mui/icons-material/Album';
 
 import '../styles/artistsview.css'
 
-export default function ListenListView({ user, setUser, isConnected, setIsConnected}){
+export default function ListenListView({ isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}){
     const [userData, setUserData] = useState(null);
     const [albums, setAlbums] = useState(null)
     const [nb, setNb] = useState(0)
@@ -63,7 +63,7 @@ export default function ListenListView({ user, setUser, isConnected, setIsConnec
 
     return(
         <div className='artistsview'>
-        <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+        <Sidebar isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
         {userData ? (
             <div className='useravatar'>
                 <Stack spacing={0} direction="column" sx={{marginLeft:'-50px'}}>

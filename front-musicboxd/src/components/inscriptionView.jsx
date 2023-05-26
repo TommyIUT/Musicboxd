@@ -12,7 +12,7 @@ import '../styles/InscriptionView.css';
 
 
 
-export default function InscriptionView({ user, setUser, isConnected, setIsConnected}) {
+export default function InscriptionView({ isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}) {
   const navigate = useNavigate();
     
   

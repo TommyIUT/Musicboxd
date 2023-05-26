@@ -15,7 +15,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import '../styles/artistview.css'
 
-export default function ArtistView({ user, setUser, isConnected, setIsConnected}) {
+export default function ArtistView({ isAdmin, setIsAdmin,user, setUser, isConnected, setIsConnected}) {
 
     const [artistData, setArtistData] = useState(null);
     const [artistAlbums, setArtistAlbums] = useState(null);
@@ -172,7 +172,7 @@ export default function ArtistView({ user, setUser, isConnected, setIsConnected}
     return(
         <div className="artistView">
             <div className='bandegrise'></div>
-            <Sidebar user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
+            <Sidebar isAdmin={isAdmin} setIsAdmin={setIsAdmin} user={user} setUser={setUser} isConnected={isConnected} setIsConnected={setIsConnected}></Sidebar>
             <IconButton aria-label="delete" size="small" sx={{position:'fixed', margin:'15px'}} onClick={handleGoBack}>
             <ArrowBackIosIcon sx={{color:'white'}} fontSize="inherit" />
             </IconButton>
