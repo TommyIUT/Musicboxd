@@ -42,7 +42,7 @@ CREATE TABLE review (
     nom_album VARCHAR(255),
     photo VARCHAR(500), -- lien photo album
     review_date timestamp,
-    note Number,
+    note numeric,
     texte VARCHAR(255),
     
     FOREIGN KEY(id_user) REFERENCES userbox(identifiant) ON DELETE CASCADE
