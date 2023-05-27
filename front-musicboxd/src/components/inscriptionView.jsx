@@ -58,7 +58,7 @@ export default function InscriptionView({ isAdmin, setIsAdmin,user, setUser, isC
              toast.error('Ce mail est déjà utilisé');
             }
               try {
-                if (identifiant.length<=5){toast.error('Saisissez un identifiant de plus de 5 charactères svp');
+                if (identifiant.length<5){toast.error('Saisissez un identifiant 5 charactères ou plus');
                }else{
                   if (data1.length===0 && data2.length===0){
                     const body = {email, hashedPassword, identifiant}
